@@ -1,0 +1,271 @@
+/* ═══════════════════════════════════════════════════════════
+   HeroSection.css
+   Palette  — cream #FDF3D5 / dark-brown #4A2C17 / muted-tan #A08D75
+              photo-fill #E8DCC0 / photo-border rgba(74,44,23,.12)
+═══════════════════════════════════════════════════════════ */
+
+/* ── Section shell ───────────────────────────────────────── */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  background: #fdf3d5;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ─────────────────────────────────────────────────────────
+   NAV BAR
+───────────────────────────────────────────────────────── */
+.hero__nav {
+  position: relative;
+  z-index: 20;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.6rem;
+  height: 60px;
+  flex-shrink: 0;
+  border-bottom: 1.5px solid rgba(74, 44, 23, 0.12);
+}
+
+.hero__nav-group {
+  display: flex;
+  align-items: center;
+  gap: 2.2rem;
+  list-style: none;
+}
+
+.hero__nav-item {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: clamp(0.6rem, 0.85vw, 0.75rem);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #4a2c17;
+  text-decoration: none;
+  opacity: 0.65;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
+
+.hero__nav-item:hover {
+  opacity: 1;
+}
+
+.hero__nav-hashtag {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: clamp(0.64rem, 0.95vw, 0.82rem);
+  letter-spacing: 0.03em;
+  color: #4a2c17;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.hero__nav-hashtag:hover {
+  opacity: 0.75;
+}
+
+/* ─────────────────────────────────────────────────────────
+   CANVAS — the full area below the nav
+───────────────────────────────────────────────────────── */
+.hero__canvas {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* ─────────────────────────────────────────────────────────
+   PHOTO SLOTS — absolute positions, asymmetric scatter
+   All sizes via clamp() so they scale gracefully.
+───────────────────────────────────────────────────────── */
+.hero__photo {
+  position: absolute;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #e8dcc0;
+  border: 1.5px solid rgba(74, 44, 23, 0.12);
+  /* subtle shadow so they lift off the cream */
+  box-shadow:
+    0 4px 18px rgba(74, 44, 23, 0.08),
+    0 1px 4px  rgba(74, 44, 23, 0.06);
+}
+
+.hero__photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Placeholder (no image yet) */
+.hero__photo-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e8dcc0 0%, #ddd0ad 100%);
+}
+
+.hero__photo-placeholder-icon {
+  font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+  opacity: 0.35;
+  user-select: none;
+}
+
+/* ── Individual slot positions ─── */
+
+/* UPPER-LEFT — portrait, above & left of center */
+.hero__photo--upper-left {
+  left:  6.5%;
+  top:   11%;
+  width:  clamp(140px, 12.5vw, 210px);
+  height: clamp(180px, 16vw,   260px);
+  border-radius: 12px 50px 14px 14px; /* slightly quirky top-right */
+}
+
+/* UPPER-RIGHT — landscape, above & right of center */
+.hero__photo--upper-right {
+  left:  57%;
+  top:   5%;
+  width:  clamp(175px, 15.5vw, 250px);
+  height: clamp(130px, 11vw,   175px);
+  border-radius: 14px 14px 50px 14px;
+}
+
+/* MID-LEFT — portrait, far left, vertically centered */
+.hero__photo--mid-left {
+  left:  0.8%;
+  top:   36%;
+  width:  clamp(115px, 10vw,   165px);
+  height: clamp(155px, 13.5vw, 215px);
+  border-radius: 0 30px 30px 0; /* open left edge bleeds off screen */
+}
+
+/* MID-RIGHT — taller portrait, far right, vertically centered */
+.hero__photo--mid-right {
+  right: 0.8%;
+  top:   27%;
+  width:  clamp(150px, 13vw,   215px);
+  height: clamp(190px, 17vw,   270px);
+  border-radius: 30px 0 0 30px; /* open right edge bleeds off screen */
+}
+
+/* LOWER-LEFT — landscape, below-center-left */
+.hero__photo--lower-left {
+  left:   18%;
+  bottom: 9%;
+  width:  clamp(165px, 14.5vw, 230px);
+  height: clamp(115px, 10vw,   160px);
+  border-radius: 14px 14px 14px 50px;
+}
+
+/* LOWER-RIGHT — portrait, below-center-right */
+.hero__photo--lower-right {
+  left:   55%;
+  bottom: 7%;
+  width:  clamp(135px, 11.5vw, 185px);
+  height: clamp(165px, 14vw,   220px);
+  border-radius: 50px 14px 14px 14px;
+}
+
+/* ─────────────────────────────────────────────────────────
+   CENTER TEXT BLOCK
+───────────────────────────────────────────────────────── */
+.hero__center {
+  position: absolute;
+  top:  50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  text-align: center;
+  /* No background — text sits over cream canvas */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  pointer-events: none;
+  user-select: none;
+  /* Enough width for the logo without wrapping on most screens */
+  width: max-content;
+  max-width: min(500px, 36vw);
+}
+
+/* Logo — Pacifico script */
+.hero__logo {
+  font-family: 'Pacifico', cursive;
+  font-size: clamp(3.8rem, 9vw, 9.5rem);
+  line-height: 0.95;
+  color: #4a2c17;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+/* By-line — small muted sans */
+.hero__byline {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: clamp(0.52rem, 0.85vw, 0.72rem);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #a08d75;
+  margin-top: 0.55em;
+}
+
+/* Tagline — medium-weight, larger than byline */
+.hero__tagline {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: clamp(0.72rem, 1.1vw, 0.95rem);
+  letter-spacing: 0.06em;
+  color: #4a2c17;
+  opacity: 0.82;
+  margin-top: 1.1em;
+  line-height: 1.45;
+  white-space: nowrap;
+}
+
+/* ─────────────────────────────────────────────────────────
+   RESPONSIVE — tablet / mobile
+───────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero__nav {
+    padding: 0 1.4rem;
+  }
+  .hero__nav-group {
+    gap: 1.2rem;
+  }
+  /* Hide the edge photos on tablet so center text stays readable */
+  .hero__photo--mid-left,
+  .hero__photo--mid-right {
+    display: none;
+  }
+  .hero__center {
+    max-width: min(380px, 60vw);
+  }
+}
+
+@media (max-width: 600px) {
+  .hero__nav-hashtag {
+    display: none; /* hashtag replaced by logo in center at small sizes */
+  }
+  /* Keep only the 4 corner photos, hide mid photos already hidden */
+  .hero__photo--lower-left,
+  .hero__photo--lower-right {
+    bottom: 4%;
+  }
+  .hero__center {
+    max-width: 80vw;
+  }
+  .hero__logo {
+    font-size: clamp(3rem, 14vw, 5rem);
+  }
+}
