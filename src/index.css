@@ -7,6 +7,18 @@
   padding: 0;
 }
 
+/* Lenis — disable native scroll-behavior so Lenis owns momentum */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
 html,
 body,
 #root {
@@ -21,43 +33,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ── Landing page ────────────────────────────────────────── */
-.landing {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fdf3d5;
-}
-
-.landing__inner {
-  text-align: center;
-  padding: 2rem;
-}
-
-.landing__title {
-  font-family: 'Pacifico', cursive;
-  font-size: clamp(3rem, 12vw, 9rem);
-  color: #4a2c17;
-  line-height: 1;
-}
-
-.landing__sub {
-  font-family: 'Inter', sans-serif;
-  font-weight: 700;
-  font-size: clamp(0.6rem, 1.2vw, 0.9rem);
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: #4a2c17;
-  opacity: 0.6;
-  margin-top: 0.5em;
-}
-
-.landing__tagline {
-  font-family: 'Inter', sans-serif;
-  font-weight: 700;
-  font-size: clamp(0.9rem, 2vw, 1.3rem);
-  color: #4a2c17;
-  margin-top: 1.5em;
-  letter-spacing: 0.05em;
+/* ── Accessibility utility ───────────────────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }

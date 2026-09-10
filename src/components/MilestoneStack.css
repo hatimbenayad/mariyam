@@ -1,0 +1,89 @@
+/* ═══════════════════════════════════════════════════════════
+   MilestoneStack.css
+   Container for the scroll-scrubbed 3D card deck transition.
+═══════════════════════════════════════════════════════════ */
+
+/* ── Scroll canvas ───────────────────────────────────────── */
+/* 
+  200vh gives 100vh of actual scroll travel to complete the card swap.
+  We sit above the previous section but have our own space.
+*/
+.stack {
+  position: relative;
+  height: 200vh; 
+  background: #fdf3d5; 
+  z-index: 3; /* sits above everything so far */
+}
+
+/* ── Sticky viewport frame (pure CSS pin) ────────────────── */
+.stack__sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* subtle perspective to give the 3D twist a little flavor */
+  perspective: 1200px;
+}
+
+/* ── Card container ──────────────────────────────────────── */
+.stack__card-wrapper {
+  position: absolute;
+  /* Centering */
+  top: 50%;
+  left: 50%;
+  /* The motion.div handles transform: translate(-50%, -50%) + scale + rotate */
+  will-change: transform, opacity;
+  transform-origin: center center;
+}
+
+/* ── Overlays ────────────────────────────────────────────── */
+/* (Re-used identical styling from PanelTransition overlays) */
+.stack__overlay-menu {
+  position: absolute;
+  top: clamp(1rem, 2vh, 1.5rem);
+  right: clamp(1.5rem, 3vw, 2.8rem);
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: clamp(0.6rem, 0.85vw, 0.72rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #4a2c17;
+  z-index: 30;
+  pointer-events: none;
+  user-select: none;
+}
+
+.stack__overlay-tab {
+  position: absolute;
+  top: 88px;
+  right: 0;
+  background: #4a2c17;
+  color: #fdf3d5;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  padding: 1rem 0.5rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: 0.56rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  z-index: 30;
+  border-radius: 4px 0 0 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  user-select: none;
+  pointer-events: none;
+}
+
+.stack__overlay-tab-w {
+  font-size: 0.88rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.1rem;
+}

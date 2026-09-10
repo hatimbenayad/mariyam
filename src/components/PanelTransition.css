@@ -1,0 +1,244 @@
+/* ═══════════════════════════════════════════════════════════
+   PanelTransition.css
+   Scroll-scrubbed expanding panel — grows from center point
+   to full viewport as user scrolls through the section.
+
+   Palette:
+     cream    #FDF3D5   (bg around small panel, matches Hero)
+     caramel  #D9A566   (left half)
+     tan      #E8DCC0   (right photo placeholder)
+     brown    #4A2C17   (text, overlays)
+═══════════════════════════════════════════════════════════ */
+
+/* ── Scroll canvas ───────────────────────────────────────── */
+/*
+  The section is 250vh tall.
+  At start (section-top = viewport-top)  → scroll progress = 0  → panel at point
+  At end   (section-bottom = vp-bottom)  → scroll progress = 1  → panel fills screen
+  That's 150vh of scroll travel for the animation — matches the brief.
+*/
+.pt {
+  position: relative;
+  z-index: 2;            /* sits above the sticky hero (z-index: 1) */
+  margin-top: -100vh;   /* pulls the section back up so it starts AT the hero */
+  height: 250vh;         /* 150vh scroll travel for the animation */
+}
+
+/* ── Sticky viewport frame ───────────────────────────────── */
+/*
+  Sticks to viewport-top for the full 150vh scroll range.
+  This IS the pin — pure CSS, no JS pinning library needed.
+*/
+.pt__sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background: transparent; /* hero shows through the unstretched area around the tiny panel */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Panel — always full viewport size, revealed by clip-path ─ */
+/*
+  Content renders at its final full size at all times.
+  Framer Motion writes clip-path: inset(P% P% P% P%) via style prop.
+    P = 50  → zero-size window at center (hidden)
+    P = 0   → inset(0) → completely revealed
+  The "window" grows outward from center as P shrinks.
+*/
+.pt__panel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  will-change: clip-path;   /* GPU hint for clip-path animation */
+  overflow: hidden;         /* contains the bleeding year number */
+}
+
+/* ── Left half — caramel / brand story ───────────────────── */
+.pt__left {
+  width: 50%;
+  height: 100%;
+  background: #d9a566;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.pt__left-content {
+  position: relative;
+  z-index: 2;
+  padding: clamp(2rem, 4vw, 3.5rem);
+  padding-top: clamp(2.5rem, 5vw, 4rem);
+  max-width: 480px;
+}
+
+.pt__heading {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: clamp(0.7rem, 1.2vw, 1rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #fdf3d5;
+  margin: 0 0 1.1em 0;
+  opacity: 0.9;
+}
+
+.pt__description {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: clamp(0.78rem, 1.1vw, 0.95rem);
+  line-height: 1.72;
+  color: rgba(253, 243, 213, 0.82);
+  margin: 0;
+}
+
+/* Giant year — bleeds bottom-left, display weight */
+.pt__year {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  /* Size: large enough to bleed off at least two edges */
+  font-size: clamp(9rem, 26vw, 24rem);
+  line-height: 0.82;
+  color: #fdf3d5;
+  opacity: 0.14;
+  letter-spacing: -0.05em;
+  position: absolute;
+  bottom: -0.12em;
+  left: -0.04em;
+  user-select: none;
+  pointer-events: none;
+  z-index: 1;
+  white-space: nowrap;
+}
+
+/* ── Right half — photo placeholder ─────────────────────── */
+.pt__right {
+  width: 50%;
+  height: 100%;
+  background: #c8b89a;  /* slightly deeper tan to read as photo placeholder */
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Subtle linen-texture shimmer via gradient */
+.pt__right::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 20px,
+    rgba(253, 243, 213, 0.04) 20px,
+    rgba(253, 243, 213, 0.04) 40px
+  );
+  pointer-events: none;
+}
+
+.pt__photo-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  opacity: 0.4;
+  position: relative;
+  z-index: 1;
+}
+
+.pt__photo-icon {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1;
+  display: block;
+}
+
+.pt__photo-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: clamp(0.55rem, 0.85vw, 0.7rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #4a2c17;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PERSISTENT OVERLAYS
+   Siblings of .pt__panel inside .pt__sticky — never scale.
+   Higher z-index than the panel, always legible.
+═══════════════════════════════════════════════════════════ */
+
+/* "Menu" — top-right */
+.pt__overlay-menu {
+  position: absolute;
+  top: clamp(1rem, 2vh, 1.5rem);
+  right: clamp(1.5rem, 3vw, 2.8rem);
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: clamp(0.6rem, 0.85vw, 0.72rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #4a2c17;
+  z-index: 30;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* "W. / Honors" vertical tab — right edge */
+.pt__overlay-tab {
+  position: absolute;
+  top: 88px;
+  right: 0;
+  background: #4a2c17;
+  color: #fdf3d5;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  padding: 1rem 0.5rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: 0.56rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  z-index: 30;
+  border-radius: 4px 0 0 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  user-select: none;
+  pointer-events: none;
+}
+
+.pt__overlay-tab-w {
+  font-size: 0.88rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.1rem;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* Stack halves vertically on small screens */
+  .pt__panel {
+    flex-direction: column;
+  }
+  .pt__left,
+  .pt__right {
+    width: 100%;
+    height: 50%;
+  }
+  .pt__year {
+    font-size: clamp(6rem, 28vw, 10rem);
+  }
+  .pt__left-content {
+    padding: 1.6rem;
+    padding-top: 2rem;
+  }
+}
