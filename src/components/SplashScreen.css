@@ -1,0 +1,176 @@
+/* ═══════════════════════════════════════════════════════════
+   SplashScreen.css
+   Puddi'n splash — bakery-box stripe layout + type
+═══════════════════════════════════════════════════════════ */
+
+/* ── Root layout ─────────────────────────────────────────── */
+.splash {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #fdf3d5;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 9999;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ── Inset border frame ──────────────────────────────────── */
+.splash__border {
+  position: absolute;
+  inset: 10px;
+  border: 2px solid #2a1509;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ── Stripe grid ─────────────────────────────────────────── */
+/*
+   Five equal columns:
+   [cream] [stripe] [cream] [stripe] [cream] [stripe] [cream]
+   We use a CSS grid trick — 7 cols, alternating 1fr each.
+*/
+.splash__stripes {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1.6fr 1fr 1.6fr 1fr 1.6fr 1fr;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.splash__stripe {
+  background-color: #f6e27e;
+  /* Place each stripe in its respective odd column */
+}
+
+.splash__stripe:nth-child(1) { grid-column: 2; }
+.splash__stripe:nth-child(2) { grid-column: 4; }
+.splash__stripe:nth-child(3) { grid-column: 6; }
+
+/* ── Shared word style ───────────────────────────────────── */
+.splash__word {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: clamp(0.75rem, 1.4vw, 1.1rem);
+  letter-spacing: 0.12em;
+  color: #4a2c17;
+  text-transform: uppercase;
+  line-height: 1;
+  position: absolute;
+  z-index: 5;
+  display: block;
+  transform-origin: center center;
+}
+
+/* ── Top row ─────────────────────────────────────────────── */
+.splash__top-row {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* YOUR  — top of first stripe (col 2 ≈ 14.3% from left) */
+.splash__word--top-left {
+  top: 28px;
+  left: calc(1fr + 28px);
+  left: 16.5%;
+}
+
+/* CRAVING — top of second stripe (col 4 ≈ 50%) */
+.splash__word--top-center {
+  top: 28px;
+  left: 50%;
+  transform-origin: left center;
+  /* horizontal centering handled by the stripe midpoint */
+  left: 49%;
+}
+
+/* CALLED — top of third stripe (col 6 ≈ 82%) */
+.splash__word--top-right {
+  top: 28px;
+  right: 13%;
+}
+
+/* ── Bottom row ──────────────────────────────────────────── */
+.splash__bottom-row {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* MADE FRESH. — bottom of first stripe */
+.splash__word--bottom-left {
+  bottom: 28px;
+  left: 16.5%;
+}
+
+/* SERVED HAPPY. — bottom of third stripe */
+.splash__word--bottom-right {
+  bottom: 28px;
+  right: 13%;
+}
+
+/* ── Logo centrepiece ────────────────────────────────────── */
+.splash__logo-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.splash__logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4em;
+  transform-origin: center center;
+}
+
+.splash__logo-text {
+  font-family: 'Pacifico', cursive;
+  font-size: clamp(4rem, 17vw, 14rem);
+  color: #4a2c17;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  display: block;
+}
+
+.splash__by {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: clamp(0.55rem, 1.1vw, 0.85rem);
+  letter-spacing: 0.25em;
+  color: #4a2c17;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+/* ── Tap hint ────────────────────────────────────────────── */
+.splash__hint {
+  position: absolute;
+  bottom: 52px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: clamp(0.55rem, 0.9vw, 0.72rem);
+  letter-spacing: 0.22em;
+  text-transform: lowercase;
+  color: #4a2c17;
+  opacity: 0;
+  z-index: 8;
+  white-space: nowrap;
+  pointer-events: none;
+}

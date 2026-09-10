@@ -1,0 +1,63 @@
+/* ── Reset & base ────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background: #fdf3d5;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Landing page ────────────────────────────────────────── */
+.landing {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fdf3d5;
+}
+
+.landing__inner {
+  text-align: center;
+  padding: 2rem;
+}
+
+.landing__title {
+  font-family: 'Pacifico', cursive;
+  font-size: clamp(3rem, 12vw, 9rem);
+  color: #4a2c17;
+  line-height: 1;
+}
+
+.landing__sub {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: clamp(0.6rem, 1.2vw, 0.9rem);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #4a2c17;
+  opacity: 0.6;
+  margin-top: 0.5em;
+}
+
+.landing__tagline {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: clamp(0.9rem, 2vw, 1.3rem);
+  color: #4a2c17;
+  margin-top: 1.5em;
+  letter-spacing: 0.05em;
+}
