@@ -1,0 +1,169 @@
+/* StatementSection.css */
+
+.statement-section {
+  position: relative;
+  z-index: 5;
+  background-color: #FDF3D5; /* Cream */
+  width: 100%;
+  /* It needs to be tall enough to allow the user to scroll through it comfortably. 
+     Since the text is large, it naturally takes up vertical space, 
+     but setting a min-height ensures we have plenty of scroll runway. */
+  min-height: 150vh;
+  padding: 10rem 0;
+  display: flex;
+  justify-content: center;
+  overflow: hidden; /* Keep scattered absolute elements contained */
+}
+
+/* ── Overlays (Menu & Tab) ── */
+.ss__nav {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #4A2C17;
+  letter-spacing: 0.05em;
+  z-index: 20;
+  cursor: pointer;
+}
+
+.ss__tab {
+  position: sticky;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  background-color: #4A2C17; /* Dark brown */
+  color: #FDF3D5; /* Cream text */
+  padding: 2rem 0.75rem;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  z-index: 20;
+  float: right;
+  margin-right: -100vw; /* Keeps it on edge despite container centering */
+}
+/* Fix tab position relative to viewport via fixed/absolute trick */
+.statement-section > .ss__tab {
+  position: absolute; /* Using absolute in relative container */
+  /* Fallback to sticky if placed in a wrapper */
+}
+
+
+/* ── Container & Typography ── */
+.ss__container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 4rem;
+  position: relative; /* Anchor for absolute scattered items */
+}
+
+.ss__text-block {
+  font-family: Impact, 'Arial Narrow', sans-serif; /* Bold condensed */
+  font-size: clamp(3.5rem, 8vw, 8rem); 
+  font-weight: 900;
+  line-height: 0.95; 
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0;
+  z-index: 10;
+  position: relative;
+  /* Add padding to the text block so the first/last words have scroll runway */
+  padding-top: 20vh;
+  padding-bottom: 20vh;
+}
+
+/* Each word is a motion.span that receives inline styles for color */
+.ss__word {
+  display: inline-block;
+  /* Will-change hints the browser to optimize color transition */
+  will-change: color; 
+}
+
+
+/* ── Scattered Photos ── */
+.ss__scattered {
+  position: absolute;
+  z-index: 5;
+}
+
+.ss__photo {
+  background-color: #E8DCC0;
+  border: 1.5px solid rgba(74, 44, 23, 0.12);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(74, 44, 23, 0.15);
+}
+
+.ss__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ss__placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(3rem, 5vw, 5rem);
+  opacity: 0.4;
+  background: linear-gradient(135deg, #e8dcc0 0%, #ddd0ad 100%);
+}
+
+.ss__photo-1 {
+  width: clamp(150px, 15vw, 250px);
+  height: clamp(200px, 20vw, 300px);
+}
+
+.ss__photo-2 {
+  width: clamp(200px, 20vw, 350px);
+  height: clamp(150px, 15vw, 250px);
+  border-radius: 8px 8px 40px 8px; /* Casual angled crop */
+}
+
+.ss__photo-3 {
+  width: clamp(180px, 18vw, 280px);
+  height: clamp(220px, 22vw, 320px);
+}
+
+
+/* ── Torn-paper Tags ── */
+.ss__tag {
+  background-color: #fffaf0; /* Slightly off-white tape */
+  padding: 0.5rem 1.5rem;
+  font-family: 'Pacifico', cursive; /* Casual script */
+  font-size: clamp(1.2rem, 1.5vw, 1.8rem);
+  color: #4A2C17;
+  box-shadow: 1px 4px 10px rgba(0,0,0,0.1);
+  /* Create jagged torn edges using clip-path polygon */
+  clip-path: polygon(
+    0% 5%, 5% 0%, 10% 8%, 15% 0%, 20% 5%, 25% 0%, 30% 6%, 35% 0%, 
+    40% 5%, 45% 0%, 50% 7%, 55% 0%, 60% 4%, 65% 0%, 70% 6%, 75% 0%, 
+    80% 5%, 85% 0%, 90% 8%, 95% 0%, 100% 5%, 
+    100% 95%, 95% 100%, 90% 92%, 85% 100%, 80% 95%, 75% 100%, 70% 94%, 
+    65% 100%, 60% 96%, 55% 100%, 50% 93%, 45% 100%, 40% 95%, 35% 100%, 
+    30% 94%, 25% 100%, 20% 95%, 15% 100%, 10% 92%, 5% 100%, 0% 95%
+  );
+  z-index: 15; /* Often sits on top of photos */
+}
+
+/* ── Responsive adjustments ── */
+@media (max-width: 900px) {
+  .ss__container {
+    padding: 0 2rem;
+  }
+  /* On smaller screens, hide some scattered items or shrink them so they don't block text completely */
+  .ss__photo-1, .ss__photo-3 {
+    opacity: 0.3 !important;
+    z-index: 1;
+  }
+}

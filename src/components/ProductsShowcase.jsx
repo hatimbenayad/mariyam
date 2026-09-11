@@ -41,7 +41,7 @@ export default function ProductsShowcase({
   products = DEFAULT_PRODUCTS
 }) {
   const sectionRef = useRef(null);
-  
+
   // Trigger animation once when the section is 40% into the viewport
   const isInView = useInView(sectionRef, {
     once: true,
@@ -80,11 +80,11 @@ export default function ProductsShowcase({
     <section className="products-showcase" ref={sectionRef} aria-label="Products Showcase">
       <LiquidBackground imageUrl="/pumera.png" />
       <div className="ps__container">
-        
+
         {/* ── Headings ── */}
         <div className="ps__header">
           {isInView && (
-            <TypewriterText 
+            <TypewriterText
               as="h2"
               className="ps__heading-solid"
               text={headingLine1}
@@ -92,12 +92,12 @@ export default function ProductsShowcase({
               onComplete={() => setLine1Done(true)}
             />
           )}
-          
+
           {/* We only render Line 2 after Line 1 is done, or simultaneously. 
               The prompt suggests a fast type, maybe we can type them both with a delay,
               or sequentially. Sequentially is safer to read. */}
           {line1Done && (
-            <TypewriterText 
+            <TypewriterText
               as="h1"
               className="ps__heading-hollow"
               text={headingLine2}
@@ -106,11 +106,11 @@ export default function ProductsShowcase({
             />
           )}
           {/* Placeholder to keep layout height stable while typing */}
-          {!line1Done && <h1 className="ps__heading-hollow" style={{opacity: 0, userSelect: 'none'}}>{headingLine2}</h1>}
+          {!line1Done && <h1 className="ps__heading-hollow" style={{ opacity: 0, userSelect: 'none' }}>{headingLine2}</h1>}
         </div>
 
         {/* ── Products Strip ── */}
-        <motion.div 
+        <motion.div
           className="ps__grid"
           variants={cardContainerVariants}
           initial="hidden"
@@ -118,7 +118,7 @@ export default function ProductsShowcase({
           animate={line2Done ? "visible" : "hidden"}
         >
           {products.map((product) => (
-            <motion.div 
+            <motion.div
               key={product.id}
               className="ps__card"
               variants={cardVariants}
@@ -126,7 +126,7 @@ export default function ProductsShowcase({
             >
               <div className="ps__card-content">
                 <h3 className="ps__card-title">{product.name}</h3>
-                
+
                 <div className="ps__card-image-wrapper">
                   {product.image ? (
                     <img src={product.image} alt={product.name} className="ps__card-image" draggable={false} />
