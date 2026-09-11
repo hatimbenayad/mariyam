@@ -32,6 +32,11 @@
   color: #B5854C; /* Darker/muted caramel */
   white-space: nowrap;
   user-select: none;
+  pointer-events: auto; /* Allow hover */
+  transition: color 0.3s ease;
+}
+.as__watermark-row:hover {
+  color: #4A2C17; /* Dark brown */
 }
 /* Alternate rows offset for texture */
 .as__watermark-row:nth-child(even) {
@@ -90,6 +95,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  pointer-events: none; /* Let hover pass through to watermark */
 }
 
 .as__heading {
@@ -100,6 +106,7 @@
   text-transform: uppercase;
   color: #FDF3D5;
   margin-top: 2rem;
+  pointer-events: none; /* Let hover pass through */
 }
 
 .as__brand {
@@ -109,6 +116,7 @@
   letter-spacing: 0.1em;
   color: rgba(253, 243, 213, 0.4);
   margin-bottom: 2rem;
+  pointer-events: none; /* Let hover pass through */
 }
 
 .as__main-layout {
@@ -118,6 +126,7 @@
   gap: clamp(2rem, 5vw, 6rem);
   width: 100%;
   flex: 1;
+  pointer-events: none; /* Let hover pass through */
 }
 
 /* ── Lists ── */
@@ -144,6 +153,7 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  pointer-events: auto; /* Restore interactivity for list items */
 }
 
 .as__list-item {
@@ -191,6 +201,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  pointer-events: auto; /* Restore interactivity for the photo */
 }
 
 .as__photo {
