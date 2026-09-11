@@ -2,7 +2,7 @@ import { useState } from 'react';
 import SplashScreen from './components/SplashScreen';
 import HeroSection from './components/HeroSection';
 import PanelTransition from './components/PanelTransition';
-import MilestoneStack from './components/MilestoneStack';
+import AnatomyWrapper from './components/AnatomyWrapper';
 import { useLenis } from './hooks/useLenis';
 import './App.css';
 
@@ -29,12 +29,10 @@ export default function App() {
         year="2024"
       />
 
-      {/* ── Card Stack transition — scroll-scrubbed milestones ── */}
-      <MilestoneStack />
+      {/* ── Typewriter & Anatomy Sections (Shared Scroll Wrapper) ── */}
+      <AnatomyWrapper />
 
       {/* ── Future sections ─────────────────────────────── */}
-      {/* <FlavorsSection /> */}
-      {/* <StorySection />  */}
     </>
   );
 }

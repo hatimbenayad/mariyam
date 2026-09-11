@@ -1,0 +1,218 @@
+/* AnatomySection.css */
+
+.anatomy-section {
+  position: absolute;
+  inset: 0;
+  z-index: 20; /* Overlays TypewriterSection */
+  background-color: #D9A566; /* Caramel */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* clip-path is animated via inline style in JSX */
+}
+
+/* ── Background Watermark ── */
+.as__watermark-container {
+  position: absolute;
+  inset: -50%; /* Make it much larger to allow rotation without clipping corners */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transform: rotate(-15deg); /* Tilted to match diagonal band loosely */
+  pointer-events: none;
+  opacity: 0.15; /* Subtle texture */
+  z-index: 1;
+}
+
+.as__watermark-row {
+  font-family: Impact, 'Arial Narrow', sans-serif;
+  font-size: clamp(6rem, 10vw, 12rem);
+  line-height: 0.9;
+  color: #B5854C; /* Darker/muted caramel */
+  white-space: nowrap;
+  user-select: none;
+}
+/* Alternate rows offset for texture */
+.as__watermark-row:nth-child(even) {
+  margin-left: -50%;
+}
+
+/* ── Persistent overlays ── */
+.as__overlay-menu {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #FDF3D5; /* Contrast on caramel */
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  z-index: 30;
+}
+
+.as__overlay-tab {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  background: #4A2C17;
+  color: #FDF3D5;
+  padding: 1.5rem 0.5rem;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  z-index: 30;
+}
+
+.as__overlay-tab-w {
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+/* ── Content Layout ── */
+.as__content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1200px;
+  height: 100%;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.as__heading {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #FDF3D5;
+  margin-top: 2rem;
+}
+
+.as__brand {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: 0.1em;
+  color: rgba(253, 243, 213, 0.4);
+  margin-bottom: 2rem;
+}
+
+.as__main-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(2rem, 5vw, 6rem);
+  width: 100%;
+  flex: 1;
+}
+
+/* ── Lists ── */
+.as__col {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.as__col:first-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.as__col:last-child {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.as__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.as__list-item {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #4A2C17;
+}
+
+/* ── Center Hero Image ── */
+.as__center-hero {
+  position: relative;
+  width: clamp(200px, 25vw, 350px);
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.as__starburst {
+  position: absolute;
+  inset: -15%;
+  width: 130%;
+  height: 130%;
+  animation: rotate-slow 40s linear infinite;
+  z-index: 1;
+}
+
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.as__photo-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #FDF3D5;
+  box-shadow: 0 20px 40px rgba(74, 44, 23, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.as__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.as__photo-placeholder {
+  font-size: 5rem;
+  color: #4A2C17;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .as__main-layout {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .as__col:first-child,
+  .as__col:last-child {
+    justify-content: center;
+    text-align: center;
+  }
+}

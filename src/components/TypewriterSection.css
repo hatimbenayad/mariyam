@@ -1,0 +1,160 @@
+/* TypewriterSection.css */
+
+.typewriter-section {
+  min-height: 100vh;
+  background-color: #FDF3D5;
+  position: relative;
+  z-index: 10; /* Ensures it renders above the sticky HeroSection */
+  display: flex;
+  align-items: center;
+  padding: 4rem 2rem;
+  overflow: hidden;
+}
+
+/* ── Persistent overlays specific to this section ── */
+.ts__overlay-menu {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #4A2C17;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  z-index: 10;
+}
+
+.ts__overlay-tab {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  background: #111;
+  color: #FDF3D5;
+  padding: 1.5rem 0.5rem;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  z-index: 10;
+}
+
+.ts__overlay-tab-w {
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+/* ── Content Layout ── */
+.ts__content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 60vh; /* Ensure some vertical space for layout */
+}
+
+/* ── Headline ── */
+.ts__headline {
+  max-width: 800px;
+  font-family: Impact, 'Arial Narrow', sans-serif;
+  font-size: clamp(3rem, 6vw, 6rem);
+  line-height: 1.1;
+  color: #4A2C17;
+  text-transform: uppercase;
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: 4rem;
+  text-align: right;
+  position: relative;
+}
+
+/* Hidden placeholder to reserve space */
+.ts__headline-placeholder {
+  visibility: hidden;
+}
+
+/* Overlay that actually animates in */
+.ts__headline-animated {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  white-space: pre-wrap; /* Preserve spaces as elements if needed */
+}
+
+/* ── Product Photo Sticker ── */
+.ts__product-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: clamp(200px, 30vw, 400px);
+  aspect-ratio: 1;
+  transform: rotate(-5deg); /* Slight rotation */
+}
+
+.ts__photo-sticker {
+  width: 100%;
+  height: 100%;
+  background-color: #fff; /* White background for sticker effect if photo is transparent */
+  border: 12px solid #fff;
+  border-radius: 20px; /* Adjust based on photo shape */
+  box-shadow: 
+    0 20px 40px rgba(74, 44, 23, 0.15),
+    0 1px 3px rgba(74, 44, 23, 0.1);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Optional: if photo has transparent bg, this makes the white border hug it tightly
+     using drop-shadow instead. We'll use border for simplicity unless an image with alpha is provided. */
+}
+
+.ts__photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ts__photo-placeholder {
+  font-size: 5rem;
+  background: #E8D9BB;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4A2C17;
+  font-weight: bold;
+}
+
+/* ── Red Accents ── */
+.ts__accents {
+  position: absolute;
+  top: -20px;
+  left: -30px;
+  width: 80px;
+  height: 80px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.ts__accent-path {
+  stroke: #C0392B; /* Warm dessert red */
+  stroke-width: 6;
+  stroke-linecap: round;
+  fill: none;
+}

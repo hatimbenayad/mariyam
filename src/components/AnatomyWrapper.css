@@ -1,0 +1,15 @@
+/* AnatomyWrapper.css */
+.anatomy-wrapper {
+  position: relative;
+  z-index: 3; /* Sits above PanelTransition */
+  height: 250vh; /* 150vh of scroll travel */
+  /* Remove top margin because we want it to follow PanelTransition naturally */
+}
+
+.aw__sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
