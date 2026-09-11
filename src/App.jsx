@@ -6,6 +6,7 @@ import AnatomyWrapper from './components/AnatomyWrapper';
 import InlineHeadingSection from './components/InlineHeadingSection';
 import ProductsShowcase from './components/ProductsShowcase';
 import StatementSection from './components/StatementSection';
+import FooterSection from './components/FooterSection';
 import { useLenis } from './hooks/useLenis';
 import './App.css';
 
@@ -13,7 +14,7 @@ export default function App() {
   const [splashDone, setSplashDone] = useState(false);
 
   /* Smooth scroll — Lenis, initialised once at root */
-  useLenis();
+  const lenisRef = useLenis();
 
   return (
     <>
@@ -44,7 +45,8 @@ export default function App() {
       {/* ── Statement Reading Section ── */}
       <StatementSection />
 
-      {/* ── Future sections ─────────────────────────────── */}
+      {/* ── Footer Section ── */}
+      <FooterSection lenisRef={lenisRef} />
     </>
   );
 }
