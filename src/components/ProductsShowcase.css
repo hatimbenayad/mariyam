@@ -1,0 +1,208 @@
+/* ProductsShowcase.css */
+
+.products-showcase {
+  background-color: #FDF3D5; /* Cream */
+  width: 100%;
+  min-height: 100vh;
+  padding: 8rem 0 4rem 0; /* Generous top padding */
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+}
+
+.ps__container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1600px; /* Wide layout for the strip */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Headings ── */
+.ps__header {
+  text-align: center;
+  margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ps__heading-solid {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  letter-spacing: 0.2em;
+  color: #4A2C17; /* Solid dark brown */
+  margin: 0;
+  line-height: 1.2;
+}
+
+.ps__heading-hollow {
+  font-family: Impact, 'Arial Narrow', sans-serif;
+  font-weight: 900;
+  font-size: clamp(5rem, 12vw, 15rem); /* Dramatically larger */
+  line-height: 0.85;
+  margin: 0;
+  color: transparent;
+  -webkit-text-stroke: 2px #4A2C17; /* Outline effect */
+  text-stroke: 2px #4A2C17;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+/* Fallback if text-stroke isn't supported */
+@supports not (-webkit-text-stroke: 2px #4A2C17) {
+  .ps__heading-hollow {
+    color: #4A2C17; /* Solid fallback */
+  }
+}
+
+/* ── Products Strip ── */
+.ps__grid {
+  display: flex;
+  width: 100%;
+  gap: 0; /* Continuous strip */
+  padding: 0 2rem; /* Give some edge breathing room if not full bleed */
+  justify-content: center;
+}
+
+/* ── Product Card ── */
+.ps__card {
+  flex: 1;
+  min-width: 250px;
+  max-width: 400px;
+  aspect-ratio: 0.65; /* Tall card */
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
+  margin: 0 0.5rem; /* Minimal gaps */
+}
+
+.ps__card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(74, 44, 23, 0.15);
+}
+
+.ps__card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 2rem 1.5rem;
+}
+
+.ps__card-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.1rem, 1.5vw, 1.5rem);
+  text-align: center;
+  color: #FDF3D5; /* Cream text */
+  text-transform: uppercase;
+  margin: 0;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+}
+
+.ps__card-image-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  transform: rotate(-5deg); /* Slight angle like the bottles */
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.ps__card:hover .ps__card-image-wrapper {
+  transform: rotate(0deg) scale(1.05);
+}
+
+.ps__card-image {
+  max-width: 80%;
+  max-height: 80%;
+  object-fit: contain;
+  filter: drop-shadow(0 15px 20px rgba(0,0,0,0.2));
+}
+
+.ps__photo-placeholder {
+  font-size: 6rem;
+  filter: drop-shadow(0 15px 20px rgba(0,0,0,0.1));
+}
+
+/* ── Hover UI (Buttons sliding up) ── */
+.ps__card-hover-ui {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease;
+}
+
+/* When card is hovered, slide up the UI */
+.ps__card:hover .ps__card-hover-ui {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.ps__btn-add,
+.ps__btn-view {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  padding: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.ps__btn-add {
+  background-color: #FDF3D5; /* Cream */
+  color: #4A2C17; /* Dark brown */
+}
+.ps__btn-add:hover {
+  background-color: #fff;
+}
+
+.ps__btn-view {
+  background-color: transparent;
+  color: #FDF3D5;
+  border: 1px solid rgba(253, 243, 213, 0.5);
+}
+.ps__btn-view:hover {
+  border-color: #FDF3D5;
+  background-color: rgba(253, 243, 213, 0.1);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .ps__grid {
+    flex-wrap: wrap;
+  }
+  .ps__card {
+    flex: 1 1 40%;
+    margin: 0.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .ps__card {
+    flex: 1 1 100%;
+    margin: 0.5rem 0;
+  }
+}

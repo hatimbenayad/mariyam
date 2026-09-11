@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { motion, useInView, useTransform } from 'framer-motion';
+import TypewriterText from './TypewriterText';
 import './TypewriterSection.css';
 
 export default function TypewriterSection({
@@ -20,31 +21,8 @@ export default function TypewriterSection({
   const shrinkScale = useTransform(sharedProgress || [0], [0.1, 1], [1, 0.4]);
   const shrinkOpacity = useTransform(sharedProgress || [0], [0.1, 1], [1, 0]);
 
-  // Split headline into characters for the typewriter effect
-  // We use Array.from to handle emojis correctly if any, though it's mostly text here
+  // Split headline into characters for the typewriter effect to calculate delay
   const characters = Array.from(headline);
-
-  // ── Framer Motion Variants ──
-
-  // Container for the staggered typewriter effect
-  const headlineVariants = {
-    hidden: { opacity: 1 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.008, // Very fast typing speed
-      },
-    },
-  };
-
-  // Individual character variant (instant appearance for true typewriter feel)
-  const charVariants = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1,
-      transition: { duration: 0.01 } 
-    },
-  };
 
   // Sticker photo animation (spring up and fade in)
   // Delay is calculated to start slightly before the text finishes typing
@@ -101,23 +79,13 @@ export default function TypewriterSection({
       <div className="ts__content">
         
         {/* ── Headline ── */}
-        <motion.h2 
+        <TypewriterText
+          as="h2"
           className="ts__headline"
-          variants={headlineVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          aria-label={headline}
-        >
-          {characters.map((char, index) => (
-            <motion.span 
-              key={index} 
-              variants={charVariants}
-              aria-hidden="true" // Hide split chars from screen readers, we use aria-label on parent
-            >
-              {char}
-            </motion.span>
-          ))}
-        </motion.h2>
+          text={headline}
+          speed={0.008}
+          inViewMargin="-40% 0px"
+        />
 
         {/* ── Product Photo Sticker (Scrub Shrink Wrapper) ── */}
         <motion.div 

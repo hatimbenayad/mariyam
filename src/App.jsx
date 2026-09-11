@@ -3,6 +3,7 @@ import SplashScreen from './components/SplashScreen';
 import HeroSection from './components/HeroSection';
 import PanelTransition from './components/PanelTransition';
 import AnatomyWrapper from './components/AnatomyWrapper';
+import ProductsShowcase from './components/ProductsShowcase';
 import { useLenis } from './hooks/useLenis';
 import './App.css';
 
@@ -31,6 +32,9 @@ export default function App() {
 
       {/* ── Typewriter & Anatomy Sections (Shared Scroll Wrapper) ── */}
       <AnatomyWrapper />
+
+      {/* ── Products Showcase Section ── */}
+      <ProductsShowcase />
 
       {/* ── Future sections ─────────────────────────────── */}
     </>
