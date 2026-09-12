@@ -26,24 +26,7 @@
   cursor: pointer;
 }
 
-.ihs__tab {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: #4A2C17; /* Dark brown */
-  color: #FDF3D5; /* Cream text */
-  padding: 2rem 0.75rem;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  border-top-left-radius: 12px;
-  border-bottom-left-radius: 12px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 700;
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
-  z-index: 10;
-}
+
 
 /* ── Container & Typography ── */
 .ihs__container {
@@ -109,8 +92,5 @@
   .ihs__thumb {
     border-radius: 10px;
   }
-  .ihs__tab {
-    padding: 1.5rem 0.5rem;
-    font-size: 0.7rem;
-  }
+
 }

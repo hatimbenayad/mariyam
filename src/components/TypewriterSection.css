@@ -24,32 +24,7 @@
   z-index: 10;
 }
 
-.ts__overlay-tab {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  background: #111;
-  color: #FDF3D5;
-  padding: 1.5rem 0.5rem;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
-  z-index: 10;
-}
 
-.ts__overlay-tab-w {
-  font-weight: 800;
-  font-size: 1rem;
-}
 
 /* ── Content Layout ── */
 .ts__content {

@@ -57,33 +57,4 @@
   user-select: none;
 }
 
-.stack__overlay-tab {
-  position: absolute;
-  top: 88px;
-  right: 0;
-  background: #4a2c17;
-  color: #fdf3d5;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  padding: 1rem 0.5rem;
-  font-family: 'Inter', sans-serif;
-  font-weight: 900;
-  font-size: 0.56rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  z-index: 30;
-  border-radius: 4px 0 0 4px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.35rem;
-  user-select: none;
-  pointer-events: none;
-}
 
-.stack__overlay-tab-w {
-  font-size: 0.88rem;
-  font-weight: 900;
-  letter-spacing: 0.04em;
-  margin-bottom: 0.1rem;
-}

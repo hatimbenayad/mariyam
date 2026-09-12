@@ -1,6 +1,8 @@
 import { useRef, useEffect } from 'react';
 import { motion, useInView, useTransform } from 'framer-motion';
 import TypewriterText from './TypewriterText';
+import PhotoWithCorners from './PhotoWithCorners';
+import { useHollowTextClip } from '../hooks/useHollowTextClip';
 import './TypewriterSection.css';
 
 export default function TypewriterSection({
@@ -11,39 +13,9 @@ export default function TypewriterSection({
 }) {
   const sectionRef = useRef(null);
   const headlinesRef = useRef(null);
-  const photoRef = useRef(null);
-
-  useEffect(() => {
-    let rafId;
-    const updateClipPaths = () => {
-      if (headlinesRef.current && photoRef.current) {
-        const headRect = headlinesRef.current.getBoundingClientRect();
-        const photoRect = photoRef.current.getBoundingClientRect();
-
-        const top = photoRect.top - headRect.top;
-        const left = photoRect.left - headRect.left;
-        const right = left + photoRect.width;
-        const bottom = top + photoRect.height;
-
-        const insetTop = Math.max(0, top);
-        const insetRight = Math.max(0, headRect.width - right);
-        const insetBottom = Math.max(0, headRect.height - bottom);
-        const insetLeft = Math.max(0, left);
-
-        headlinesRef.current.style.setProperty('--clip-include', `inset(${insetTop}px ${insetRight}px ${insetBottom}px ${insetLeft}px)`);
-
-        headlinesRef.current.style.setProperty('--clip-exclude',
-          `polygon(
-            0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%,
-            ${left}px ${top}px, ${left}px ${bottom}px, ${right}px ${bottom}px, ${right}px ${top}px, ${left}px ${top}px
-          )`
-        );
-      }
-      rafId = requestAnimationFrame(updateClipPaths);
-    };
-    rafId = requestAnimationFrame(updateClipPaths);
-    return () => cancelAnimationFrame(rafId);
-  }, []);
+  const photoEls = useRef([null]);
+  
+  useHollowTextClip({ containerRef: headlinesRef, photoNodes: photoEls });
 
   // Trigger animation once when the section is 40% into the viewport
   const isInView = useInView(sectionRef, {
@@ -101,10 +73,7 @@ export default function TypewriterSection({
     >
       {/* ── Persistent overlays ── */}
 
-      <div className="ts__overlay-tab" aria-label="W. Honors">
-        <span className="ts__overlay-tab-w">W.</span>
-        <span>Honors</span>
-      </div>
+
 
       {/* ── Main Content ── */}
       <div className="ts__content">
@@ -152,8 +121,11 @@ export default function TypewriterSection({
               />
             </svg>
 
-            {/* Photo itself — no box, just the raw image with drop shadow */}
-            <div className="ts__photo-sticker" ref={photoRef}>
+            {/* Photo itself — using PhotoWithCorners to generate exact clip polygons */}
+            <PhotoWithCorners 
+              className="ts__photo-sticker" 
+              ref={(el) => photoEls.current[0] = el}
+            >
               {photoSrc ? (
                 <img
                   src={photoSrc}
@@ -166,7 +138,7 @@ export default function TypewriterSection({
                   🍮
                 </div>
               )}
-            </div>
+            </PhotoWithCorners>
           </motion.div>
         </motion.div>
 
@@ -181,13 +153,14 @@ export default function TypewriterSection({
             inViewMargin="-40% 0px"
           />
 
-          {/* Outline Text - clipped to INCLUDE photo */}
+          {/* Outline Text - clipped to INCLUDE photo via --clip-include-0 set by useHollowTextClip */}
           <TypewriterText
             as="h2"
             className="ts__headline ts__headline--outline"
             text={headline}
             speed={0.008}
             inViewMargin="-40% 0px"
+            style={{ clipPath: 'var(--clip-include-0)' }}
           />
         </div>
 

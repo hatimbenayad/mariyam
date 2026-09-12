@@ -233,7 +233,7 @@
 .hero__blob {
   position: absolute;
   border-radius: 50% 60% 40% 70% / 60% 50% 70% 40%;
-  background-color: #EEDDB8; /* slightly darker tan than #FDF3D5 */
+  background-color: #F6E27E; /* pastel yellow matching splash screen */
   z-index: 0;
   pointer-events: none;
 }

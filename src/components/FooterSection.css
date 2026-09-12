@@ -157,25 +157,7 @@
   background: linear-gradient(135deg, #e8dcc0 0%, #ddd0ad 100%);
 }
 
-/* ── Corner Tab ── */
-.fs__tab {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  background-color: #FDF3D5; /* Cream tab to contrast against dark bg */
-  color: #4A2C17;
-  padding: 2rem 0.75rem;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  border-top-left-radius: 12px;
-  border-bottom-left-radius: 12px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 700;
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
-  z-index: 15;
-}
+
 
 /* ── Bottom Row Links ── */
 .fs__bottom-row {

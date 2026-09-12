@@ -26,7 +26,7 @@
 /* ── Text half ───────────────────────────────────────────── */
 .milestone-card__text {
   flex: 1;
-  background: #d9a566; /* caramel */
+  background: #F6E27E; /* pastel yellow matching splash screen */
   position: relative;
   display: flex;
   flex-direction: column;
@@ -40,7 +40,7 @@
   font-size: clamp(0.8rem, 1.2vw, 1.1rem);
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #fdf3d5;
+  color: #4a2c17;
   margin: 0 0 1.2em 0;
   opacity: 0.9;
 }
@@ -50,7 +50,7 @@
   font-weight: 500;
   font-size: clamp(0.85rem, 1.2vw, 1rem);
   line-height: 1.6;
-  color: rgba(253, 243, 213, 0.85);
+  color: rgba(74, 44, 23, 0.85); /* dark brown with opacity */
   max-width: 90%;
   margin: 0;
 }
@@ -61,8 +61,8 @@
   font-weight: 900;
   font-size: clamp(8rem, 20vw, 18rem);
   line-height: 0.8;
-  color: #fdf3d5;
-  opacity: 0.15;
+  color: #4a2c17;
+  opacity: 0.08; /* lower opacity since dark text stands out more */
   letter-spacing: -0.05em;
   position: absolute;
   bottom: -0.1em;

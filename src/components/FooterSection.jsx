@@ -57,10 +57,7 @@ export default function FooterSection({
         animate={isInView ? "visible" : "hidden"}
       >
         
-        {/* W. / Honors Corner Tab */}
-        <motion.div className="fs__tab" variants={itemVariants}>
-          <span className="fs__tab-text">W. / Honors</span>
-        </motion.div>
+
 
         {/* Die-cut Corner Photos */}
         <motion.div className="fs__photo fs__photo-top-left" variants={itemVariants}>

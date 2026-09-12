@@ -105,10 +105,7 @@ export default function MilestoneStack({
           Menu
         </div>
 
-        <div className="stack__overlay-tab" aria-label="W. Honors">
-          <span className="stack__overlay-tab-w">W.</span>
-          <span>Honors</span>
-        </div>
+
 
       </div>
     </section>

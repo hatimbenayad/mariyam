@@ -97,10 +97,7 @@ export default function AnatomySection({
 
       {/* ── Persistent overlays (inside the masked area so they reveal with it) ── */}
 
-      <div className="as__overlay-tab" aria-label="W. Honors">
-        <span className="as__overlay-tab-w">W.</span>
-        <span>Honors</span>
-      </div>
+
 
       {/* ── Content ── */}
       <div className="as__content">

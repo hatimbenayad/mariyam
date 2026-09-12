@@ -31,36 +31,7 @@
   cursor: pointer;
 }
 
-.ss__tab {
-  position: sticky;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  background-color: #4A2C17;
-  /* Dark brown */
-  color: #FDF3D5;
-  /* Cream text */
-  padding: 2rem 0.75rem;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  border-top-left-radius: 12px;
-  border-bottom-left-radius: 12px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 700;
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
-  z-index: 20;
-  float: right;
-  margin-right: -100vw;
-  /* Keeps it on edge despite container centering */
-}
 
-/* Fix tab position relative to viewport via fixed/absolute trick */
-.statement-section>.ss__tab {
-  position: absolute;
-  /* Using absolute in relative container */
-  /* Fallback to sticky if placed in a wrapper */
-}
 
 
 /* ── Container & Typography ── */
@@ -95,6 +66,7 @@
 .ss__word {
   display: inline-block;
   will-change: color;
+  margin-right: 0.25em;
 }
 
 /* ── Stacked text grid for hollow-text-behind-image effect ── */
@@ -112,17 +84,7 @@
   margin: 0;
 }
 
-/* Solid fill copy — polygon with rectangular holes per photo via JS */
-.ss__text--solid {
-  clip-path: var(--clip-exclude, none);
-}
 
-/* Outline/hollow copies — each gets its own clip-path applied inline
-   via the outlineIndex prop: clip-path: var(--clip-include-N, inset(50%)).
-   No static clip-path rule needed here. */
-.ss__text--outline {
-  pointer-events: none;
-}
 
 
 /* ── Scattered Photos ── */

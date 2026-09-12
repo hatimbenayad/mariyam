@@ -106,14 +106,7 @@ export default function PanelTransition({
             They are never masked, always render above everything.  */}
 
 
-        <motion.div
-          className="pt__overlay-tab"
-          style={{ opacity: overlayOpacity }}
-          aria-label="W. Honors"
-        >
-          <span className="pt__overlay-tab-w">W.</span>
-          <span>Honors</span>
-        </motion.div>
+
 
       </div>{/* /pt__sticky */}
 
