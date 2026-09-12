@@ -4,7 +4,7 @@ import TypewriterSection from './TypewriterSection';
 import AnatomySection from './AnatomySection';
 import './AnatomyWrapper.css';
 
-export default function AnatomyWrapper() {
+export default function AnatomyWrapper({ anatomyPhoto }) {
   const wrapperRef = useRef(null);
 
   // The wrapper is 250vh tall. We track scroll progress across this entire height.
@@ -19,10 +19,10 @@ export default function AnatomyWrapper() {
     <section ref={wrapperRef} className="anatomy-wrapper">
       <div className="aw__sticky">
         {/* The previous section, rendered underneath */}
-        <TypewriterSection sharedProgress={scrollYProgress} />
+        <TypewriterSection sharedProgress={scrollYProgress} photoSrc="/chocchip pudding.png" photoAlt="Chocchip pudding — Puddi'n signature" />
         
         {/* The new section, revealed on top via mask */}
-        <AnatomySection scrollProgress={scrollYProgress} />
+        <AnatomySection scrollProgress={scrollYProgress} photoSrc={anatomyPhoto} />
       </div>
     </section>
   );

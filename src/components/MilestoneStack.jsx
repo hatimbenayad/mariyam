@@ -9,7 +9,12 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import MilestoneCard from './MilestoneCard';
 import './MilestoneStack.css';
 
-export default function MilestoneStack() {
+export default function MilestoneStack({
+  card1PhotoSrc = null,
+  card1PhotoAlt = 'Brand photo',
+  card2PhotoSrc = null,
+  card2PhotoAlt = 'Brand photo',
+}) {
   const sectionRef = useRef(null);
 
   /*
@@ -68,6 +73,8 @@ export default function MilestoneStack() {
             description="Our humble pudding began turning heads outside the neighborhood. Word of mouth spread faster than we could stir, and soon we were shipping our signature batches across the country. We never changed the recipe, just bought bigger pots."
             year="2011"
             imagePosition="right"
+            photoSrc={card1PhotoSrc}
+            photoAlt={card1PhotoAlt}
           />
         </motion.div>
 
@@ -87,7 +94,9 @@ export default function MilestoneStack() {
             heading="A New Chapter"
             description="With the opening of our flagship store downtown, Puddi'n evolved from a well-kept secret to a daily ritual for thousands. We added new flavors, built a passionate team, and created a space where every cup feels like coming home."
             year="2018"
-            imagePosition="left" /* mirrored layout */
+            imagePosition="left"
+            photoSrc={card2PhotoSrc}
+            photoAlt={card2PhotoAlt}
           />
         </motion.div>
 

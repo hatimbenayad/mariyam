@@ -108,25 +108,56 @@
 .ts__photo-sticker {
   width: 100%;
   height: 100%;
-  background-color: #fff; /* White background for sticker effect if photo is transparent */
-  border: 12px solid #fff;
-  border-radius: 20px; /* Adjust based on photo shape */
-  box-shadow: 
-    0 20px 40px rgba(74, 44, 23, 0.15),
-    0 1px 3px rgba(74, 44, 23, 0.1);
-  overflow: hidden;
+  /* No box, no border, no background — just the raw image */
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: hidden;   /* clips the knockout text layer to image bounds */
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Optional: if photo has transparent bg, this makes the white border hug it tightly
-     using drop-shadow instead. We'll use border for simplicity unless an image with alpha is provided. */
+  position: relative;
 }
 
 .ts__photo-img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   display: block;
+  filter: drop-shadow(0 12px 32px rgba(74, 44, 23, 0.22)) drop-shadow(0 3px 8px rgba(74, 44, 23, 0.14));
+}
+
+/* ── Knockout layer ────────────────────────────────────────────
+   Absolutely fills the photo container. The headline inside it
+   is positioned to perfectly align with the real headline above,
+   but clipped by overflow:hidden on .ts__photo-sticker.
+   Result: outlined letters are visible ONLY inside the image zone.
+─────────────────────────────────────────────────────────────── */
+.ts__knockout-layer {
+  position: absolute;
+  /* Mirror the content area geometry: the section is right-aligned
+     with margin-right:4rem, so we push from the right to realign */
+  inset: 0;
+  pointer-events: none;
+  /* Shift the headline inside here to align with the real headline.
+     The product wrapper is at left:10%, so we offset right to simulate
+     the headline's right-aligned position */
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  /* Padding mirrors .ts__headline margin offsets */
+  padding-right: 4rem;
+  padding-top: 2rem;
+}
+
+.ts__headline--knockout {
+  /* Stroke-only text — hollow letters with brown border */
+  color: transparent;
+  -webkit-text-stroke: 2px #4A2C17;
+  /* Must match the real headline exactly */
+  margin: 0;
+  margin-top: 2rem;
+  text-align: right;
 }
 
 .ts__photo-placeholder {

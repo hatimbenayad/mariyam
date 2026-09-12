@@ -129,15 +129,27 @@ export default function TypewriterSection({
               />
             </svg>
 
-            {/* Photo itself */}
+            {/* Photo itself — no box, just the raw image with drop shadow */}
             <div className="ts__photo-sticker">
               {photoSrc ? (
-                <img 
-                  src={photoSrc} 
-                  alt={photoAlt} 
-                  className="ts__photo-img" 
-                  draggable={false}
-                />
+                <>
+                  <img
+                    src={photoSrc}
+                    alt={photoAlt}
+                    className="ts__photo-img"
+                    draggable={false}
+                  />
+                  {/* ── Knockout layer ──────────────────────────────────────
+                      An outlined copy of the headline sits inside the image
+                      container. overflow:hidden on .ts__photo-sticker clips
+                      it to the image bounds only — so the stroke-only text
+                      appears wherever the image overlaps the headline.       */}
+                  <div className="ts__knockout-layer" aria-hidden="true">
+                    <h2 className="ts__headline ts__headline--knockout">
+                      {headline}
+                    </h2>
+                  </div>
+                </>
               ) : (
                 <div className="ts__photo-placeholder">
                   🍮

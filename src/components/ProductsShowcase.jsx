@@ -7,31 +7,31 @@ import './ProductsShowcase.css';
 const DEFAULT_PRODUCTS = [
   {
     id: 1,
-    name: "Salted Caramel Swirl",
+    name: "Classic Caramel",
     price: "$6.00",
     color: "#D9A566", // Caramel
-    image: null,
+    image: "/Products Showcase 1.png",
   },
   {
     id: 2,
     name: "Classic Vanilla Bean",
     price: "$5.50",
     color: "#B5854C", // Deeper brown
-    image: null,
+    image: "/Products Showcase 2.png",
   },
   {
     id: 3,
     name: "Double Chocolate",
     price: "$6.50",
     color: "#E5C158", // Golden yellow
-    image: null,
+    image: "/Products Showcase 3.png",
   },
   {
     id: 4,
     name: "Spiced Chai",
     price: "$6.00",
     color: "#C27E67", // Muted terracotta
-    image: null,
+    image: "/Products Showcase 4.png",
   }
 ];
 

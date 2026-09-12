@@ -90,21 +90,21 @@
 ───────────────────────────────────────────────────────── */
 .hero__photo {
   position: absolute;
-  border-radius: 14px;
-  overflow: hidden;
-  background: #e8dcc0;
-  border: 1.5px solid rgba(74, 44, 23, 0.12);
-  /* subtle shadow so they lift off the cream */
-  box-shadow:
-    0 4px 18px rgba(74, 44, 23, 0.08),
-    0 1px 4px  rgba(74, 44, 23, 0.06);
+  /* No box — images float freely on the canvas */
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  overflow: visible;
 }
 
 .hero__photo-img {
+  /* Let the image's natural proportions determine height — no clipping box */
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   display: block;
+  /* Soft drop-shadow so images lift off the cream without a hard border */
+  filter: drop-shadow(0 8px 28px rgba(74, 44, 23, 0.20)) drop-shadow(0 2px 8px rgba(74, 44, 23, 0.12));
 }
 
 /* Placeholder (no image yet) */
@@ -114,7 +114,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #e8dcc0 0%, #ddd0ad 100%);
+  background: transparent;
 }
 
 .hero__photo-placeholder-icon {
@@ -124,59 +124,49 @@
 }
 
 /* ── Individual slot positions ─── */
+/* Each photo has a unique rotation and deliberately uneven placement
+   so they look casually tossed onto the canvas, not grid-arranged. */
 
-/* UPPER-LEFT — portrait, above & left of center */
+/* UPPER-LEFT — portrait, top-left quadrant, canted left */
 .hero__photo--upper-left {
-  left:  6.5%;
-  top:   11%;
-  width:  clamp(140px, 12.5vw, 210px);
-  height: clamp(180px, 16vw,   260px);
-  border-radius: 12px 50px 14px 14px; /* slightly quirky top-right */
+  left:  5%;
+  top:   8%;
+  width:  clamp(150px, 13vw, 220px);
 }
 
-/* UPPER-RIGHT — landscape, above & right of center */
+/* UPPER-RIGHT — landscape, right of center, tilted right */
 .hero__photo--upper-right {
-  left:  57%;
-  top:   5%;
-  width:  clamp(175px, 15.5vw, 250px);
-  height: clamp(130px, 11vw,   175px);
-  border-radius: 14px 14px 50px 14px;
+  left:  62%;
+  top:   4%;
+  width:  clamp(180px, 16vw, 260px);
 }
 
-/* MID-LEFT — portrait, far left, vertically centered */
+/* MID-LEFT — portrait, bleeds off the left edge, slight tilt */
 .hero__photo--mid-left {
-  left:  0.8%;
-  top:   36%;
-  width:  clamp(115px, 10vw,   165px);
-  height: clamp(155px, 13.5vw, 215px);
-  border-radius: 0 30px 30px 0; /* open left edge bleeds off screen */
+  left:  -1%;
+  top:   42%;
+  width:  clamp(120px, 10.5vw, 175px);
 }
 
-/* MID-RIGHT — taller portrait, far right, vertically centered */
+/* MID-RIGHT — taller portrait, bleeds off right edge, negative tilt */
 .hero__photo--mid-right {
-  right: 0.8%;
-  top:   27%;
-  width:  clamp(150px, 13vw,   215px);
-  height: clamp(190px, 17vw,   270px);
-  border-radius: 30px 0 0 30px; /* open right edge bleeds off screen */
+  right: -1%;
+  top:   22%;
+  width:  clamp(155px, 13.5vw, 225px);
 }
 
-/* LOWER-LEFT — landscape, below-center-left */
+/* LOWER-LEFT — landscape, bottom, offset far left from center */
 .hero__photo--lower-left {
-  left:   18%;
-  bottom: 9%;
-  width:  clamp(165px, 14.5vw, 230px);
-  height: clamp(115px, 10vw,   160px);
-  border-radius: 14px 14px 14px 50px;
+  left:   14%;
+  bottom: 7%;
+  width:  clamp(170px, 15vw, 240px);
 }
 
-/* LOWER-RIGHT — portrait, below-center-right */
+/* LOWER-RIGHT — portrait, bottom, closer to center-right */
 .hero__photo--lower-right {
-  left:   55%;
-  bottom: 7%;
-  width:  clamp(135px, 11.5vw, 185px);
-  height: clamp(165px, 14vw,   220px);
-  border-radius: 50px 14px 14px 14px;
+  left:   56%;
+  bottom: 5%;
+  width:  clamp(140px, 12vw, 195px);
 }
 
 /* ─────────────────────────────────────────────────────────

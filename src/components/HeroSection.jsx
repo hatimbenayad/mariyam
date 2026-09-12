@@ -32,36 +32,42 @@ const PHOTO_SLOTS = [
     xPct: 7,
     cls: 'hero__photo--upper-left',
     defaultAlt: 'Pudding photo 1',
+    rotate: -7,
   },
   {
     id: 'p-upper-right',
     xPct: 59,
     cls: 'hero__photo--upper-right',
     defaultAlt: 'Pudding photo 2',
+    rotate: 5,
   },
   {
     id: 'p-mid-left',
     xPct: 1,
     cls: 'hero__photo--mid-left',
     defaultAlt: 'Pudding photo 3',
+    rotate: 3.5,
   },
   {
     id: 'p-mid-right',
     xPct: 97,
     cls: 'hero__photo--mid-right',
     defaultAlt: 'Pudding photo 4',
+    rotate: -4,
   },
   {
     id: 'p-lower-left',
     xPct: 20,
     cls: 'hero__photo--lower-left',
     defaultAlt: 'Pudding photo 5',
+    rotate: 6,
   },
   {
     id: 'p-lower-right',
     xPct: 57,
     cls: 'hero__photo--lower-right',
     defaultAlt: 'Pudding photo 6',
+    rotate: -8.5,
   },
 ];
 
@@ -88,13 +94,14 @@ const navItemV = {
   },
 };
 
-/* Photo: fade up with subtle spring */
-const photoV = (delay) => ({
-  hidden:  { opacity: 0, y: 28, scale: 0.94 },
+/* Photo: fade up with subtle spring, lands at its final rotation */
+const photoV = (delay, finalRotate = 0) => ({
+  hidden:  { opacity: 0, y: 28, scale: 0.94, rotate: finalRotate * 0.3 },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
+    rotate: finalRotate,
     transition: { type: 'spring', stiffness: 200, damping: 24, delay },
   },
 });
@@ -194,7 +201,7 @@ export default function HeroSection({ isActive = false, photos = [] }) {
               key={slot.id}
               id={slot.id}
               className={`hero__photo ${slot.cls}`}
-              variants={photoV(delay)}
+              variants={photoV(delay, slot.rotate)}
               initial="hidden"
               animate={animState}
               aria-label={photoData?.alt ?? slot.defaultAlt}
