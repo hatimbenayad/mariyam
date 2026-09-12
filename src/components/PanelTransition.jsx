@@ -105,13 +105,6 @@ export default function PanelTransition({
         {/* ══ Persistent overlays — OUTSIDE the clipped panel ═══
             They are never masked, always render above everything.  */}
 
-        <motion.div
-          className="pt__overlay-menu"
-          style={{ opacity: overlayOpacity }}
-          aria-hidden="true"
-        >
-          Menu
-        </motion.div>
 
         <motion.div
           className="pt__overlay-tab"

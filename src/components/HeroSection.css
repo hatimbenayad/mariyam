@@ -131,42 +131,42 @@
 .hero__photo--upper-left {
   left:  5%;
   top:   8%;
-  width:  clamp(150px, 13vw, 220px);
+  width:  clamp(200px, 18vw, 300px);
 }
 
 /* UPPER-RIGHT — landscape, right of center, tilted right */
 .hero__photo--upper-right {
   left:  62%;
   top:   4%;
-  width:  clamp(180px, 16vw, 260px);
+  width:  clamp(240px, 21vw, 350px);
 }
 
 /* MID-LEFT — portrait, bleeds off the left edge, slight tilt */
 .hero__photo--mid-left {
   left:  -1%;
   top:   42%;
-  width:  clamp(120px, 10.5vw, 175px);
+  width:  clamp(160px, 14vw, 230px);
 }
 
 /* MID-RIGHT — taller portrait, bleeds off right edge, negative tilt */
 .hero__photo--mid-right {
   right: -1%;
   top:   22%;
-  width:  clamp(155px, 13.5vw, 225px);
+  width:  clamp(200px, 18vw, 300px);
 }
 
 /* LOWER-LEFT — landscape, bottom, offset far left from center */
 .hero__photo--lower-left {
   left:   14%;
   bottom: 7%;
-  width:  clamp(170px, 15vw, 240px);
+  width:  clamp(220px, 20vw, 320px);
 }
 
 /* LOWER-RIGHT — portrait, bottom, closer to center-right */
 .hero__photo--lower-right {
   left:   56%;
   bottom: 5%;
-  width:  clamp(140px, 12vw, 195px);
+  width:  clamp(180px, 16vw, 260px);
 }
 
 /* ─────────────────────────────────────────────────────────
@@ -226,6 +226,107 @@
 }
 
 /* ─────────────────────────────────────────────────────────
+   DECORATIVE ELEMENTS (Blobs, Doodles, Labels)
+───────────────────────────────────────────────────────── */
+
+/* ── Background Blobs ── */
+.hero__blob {
+  position: absolute;
+  border-radius: 50% 60% 40% 70% / 60% 50% 70% 40%;
+  background-color: #EEDDB8; /* slightly darker tan than #FDF3D5 */
+  z-index: 0;
+  pointer-events: none;
+}
+.hero__blob--top-left {
+  top: -10%; left: -10%; width: 40vw; height: 40vw;
+  transform: rotate(15deg);
+}
+.hero__blob--bottom-right {
+  bottom: -15%; right: -5%; width: 50vw; height: 35vw;
+  transform: rotate(-25deg);
+}
+
+/* ── Labels & Arrows ── */
+.hero__label-block {
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+}
+.hero__label-text {
+  font-family: 'Pacifico', cursive;
+  font-size: clamp(1.2rem, 1.5vw, 1.8rem);
+  color: #4A2C17;
+  white-space: nowrap;
+}
+.hero__arrow {
+  width: 100px;
+  height: 50px;
+  overflow: visible;
+}
+.hero__stroke {
+  fill: none;
+  stroke: #4A2C17;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Specific Label positioning */
+.hero__label-block--upper-left {
+  top: 5%; left: 23%;
+  align-items: flex-end;
+}
+.hero__label-block--upper-left .hero__arrow {
+  transform: translate(0px, -5px) scaleX(-1) rotate(-10deg);
+}
+.hero__label-block--upper-right {
+  top: -1%; left: 45%;
+  align-items: flex-start;
+}
+.hero__label-block--upper-right .hero__arrow {
+  transform: translate(-10px, 10px) rotate(15deg);
+}
+.hero__label-block--mid-left {
+  top: 38%; left: 16%;
+  align-items: flex-end;
+}
+.hero__label-block--mid-left .hero__arrow {
+  transform: translate(20px, 0) scaleX(-1) rotate(15deg);
+}
+.hero__label-block--lower-right {
+  bottom: 18%; left: 74%;
+  align-items: flex-start;
+}
+.hero__label-block--lower-right .hero__arrow {
+  transform: translate(-30px, -10px) rotate(-45deg);
+}
+
+/* ── Doodles ── */
+.hero__doodle {
+  position: absolute;
+  width: 50px; height: 50px;
+  z-index: 10; pointer-events: none;
+  overflow: visible;
+}
+.hero__doodle--sparkle-1 { top: 12%; left: 52%; transform: rotate(15deg) scale(0.6); }
+.hero__doodle--heart-1 { bottom: 12%; left: 34%; transform: rotate(-20deg) scale(0.7); }
+.hero__doodle--heart-2 { bottom: 22%; left: 52%; transform: rotate(15deg) scale(0.5); }
+
+.hero__doodle-crown {
+  width: 80px; height: 40px;
+  margin-bottom: -15px;
+  margin-left: 20px;
+  overflow: visible;
+}
+.hero__doodle-squiggle {
+  width: 150px; height: 20px;
+  margin-top: 5px;
+  overflow: visible;
+}
+
+/* ─────────────────────────────────────────────────────────
    RESPONSIVE — tablet / mobile
 ───────────────────────────────────────────────────────── */
 @media (max-width: 900px) {
@@ -237,7 +338,8 @@
   }
   /* Hide the edge photos on tablet so center text stays readable */
   .hero__photo--mid-left,
-  .hero__photo--mid-right {
+  .hero__photo--mid-right,
+  .hero__label-block--mid-left {
     display: none;
   }
   .hero__center {
@@ -259,5 +361,8 @@
   }
   .hero__logo {
     font-size: clamp(3rem, 14vw, 5rem);
+  }
+  .hero__label-block, .hero__doodle { 
+    display: none; /* Hide decorative doodles and labels on smallest screens to reduce clutter */
   }
 }

@@ -52,11 +52,6 @@ export default function InlineHeadingSection({
   return (
     <section className="inline-heading-section" ref={sectionRef} aria-label="Product Types">
       
-      {/* ── Menu & Tab (Own instance for this section) ── */}
-      <div className="ihs__nav">Menu</div>
-      <div className="ihs__tab">
-        <span className="ihs__tab-text">W. / Honors</span>
-      </div>
 
       <div className="ihs__container">
         <motion.div 

@@ -96,10 +96,6 @@ export default function AnatomySection({
       </div>
 
       {/* ── Persistent overlays (inside the masked area so they reveal with it) ── */}
-      {/* Since they perfectly overlap TypewriterSection's overlays, they just replace them seamlessly */}
-      <div className="as__overlay-menu" aria-hidden="true">
-        Menu
-      </div>
 
       <div className="as__overlay-tab" aria-label="W. Honors">
         <span className="as__overlay-tab-w">W.</span>

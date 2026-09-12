@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { motion, useInView, useTransform } from 'framer-motion';
 import TypewriterText from './TypewriterText';
 import './TypewriterSection.css';
@@ -10,6 +10,40 @@ export default function TypewriterSection({
   sharedProgress = null,
 }) {
   const sectionRef = useRef(null);
+  const headlinesRef = useRef(null);
+  const photoRef = useRef(null);
+
+  useEffect(() => {
+    let rafId;
+    const updateClipPaths = () => {
+      if (headlinesRef.current && photoRef.current) {
+        const headRect = headlinesRef.current.getBoundingClientRect();
+        const photoRect = photoRef.current.getBoundingClientRect();
+
+        const top = photoRect.top - headRect.top;
+        const left = photoRect.left - headRect.left;
+        const right = left + photoRect.width;
+        const bottom = top + photoRect.height;
+
+        const insetTop = Math.max(0, top);
+        const insetRight = Math.max(0, headRect.width - right);
+        const insetBottom = Math.max(0, headRect.height - bottom);
+        const insetLeft = Math.max(0, left);
+
+        headlinesRef.current.style.setProperty('--clip-include', `inset(${insetTop}px ${insetRight}px ${insetBottom}px ${insetLeft}px)`);
+
+        headlinesRef.current.style.setProperty('--clip-exclude',
+          `polygon(
+            0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%,
+            ${left}px ${top}px, ${left}px ${bottom}px, ${right}px ${bottom}px, ${right}px ${top}px, ${left}px ${top}px
+          )`
+        );
+      }
+      rafId = requestAnimationFrame(updateClipPaths);
+    };
+    rafId = requestAnimationFrame(updateClipPaths);
+    return () => cancelAnimationFrame(rafId);
+  }, []);
 
   // Trigger animation once when the section is 40% into the viewport
   const isInView = useInView(sectionRef, {
@@ -66,9 +100,6 @@ export default function TypewriterSection({
       aria-label="Brand statement"
     >
       {/* ── Persistent overlays ── */}
-      <div className="ts__overlay-menu" aria-hidden="true">
-        Menu
-      </div>
 
       <div className="ts__overlay-tab" aria-label="W. Honors">
         <span className="ts__overlay-tab-w">W.</span>
@@ -78,24 +109,16 @@ export default function TypewriterSection({
       {/* ── Main Content ── */}
       <div className="ts__content">
         
-        {/* ── Headline ── */}
-        <TypewriterText
-          as="h2"
-          className="ts__headline"
-          text={headline}
-          speed={0.008}
-          inViewMargin="-40% 0px"
-        />
-
         {/* ── Product Photo Sticker (Scrub Shrink Wrapper) ── */}
         <motion.div 
           style={{ 
             scale: shrinkScale, 
             opacity: shrinkOpacity, 
-            transformOrigin: '20% 80%', // Roughly the bottom-left corner
+            transformOrigin: '10% 90%', // Matches photo's new bottom-left anchor
             position: 'absolute', 
             inset: 0, 
-            pointerEvents: 'none' 
+            pointerEvents: 'none',
+            zIndex: 1
           }}
         >
           <motion.div 
@@ -130,26 +153,14 @@ export default function TypewriterSection({
             </svg>
 
             {/* Photo itself — no box, just the raw image with drop shadow */}
-            <div className="ts__photo-sticker">
+            <div className="ts__photo-sticker" ref={photoRef}>
               {photoSrc ? (
-                <>
-                  <img
-                    src={photoSrc}
-                    alt={photoAlt}
-                    className="ts__photo-img"
-                    draggable={false}
-                  />
-                  {/* ── Knockout layer ──────────────────────────────────────
-                      An outlined copy of the headline sits inside the image
-                      container. overflow:hidden on .ts__photo-sticker clips
-                      it to the image bounds only — so the stroke-only text
-                      appears wherever the image overlaps the headline.       */}
-                  <div className="ts__knockout-layer" aria-hidden="true">
-                    <h2 className="ts__headline ts__headline--knockout">
-                      {headline}
-                    </h2>
-                  </div>
-                </>
+                <img
+                  src={photoSrc}
+                  alt={photoAlt}
+                  className="ts__photo-img"
+                  draggable={false}
+                />
               ) : (
                 <div className="ts__photo-placeholder">
                   🍮
@@ -158,6 +169,27 @@ export default function TypewriterSection({
             </div>
           </motion.div>
         </motion.div>
+
+        {/* ── Headlines (Stacked in front of photo) ── */}
+        <div className="ts__headlines-container" ref={headlinesRef}>
+          {/* Solid Text - clipped to EXCLUDE photo */}
+          <TypewriterText
+            as="h2"
+            className="ts__headline ts__headline--solid"
+            text={headline}
+            speed={0.008}
+            inViewMargin="-40% 0px"
+          />
+
+          {/* Outline Text - clipped to INCLUDE photo */}
+          <TypewriterText
+            as="h2"
+            className="ts__headline ts__headline--outline"
+            text={headline}
+            speed={0.008}
+            inViewMargin="-40% 0px"
+          />
+        </div>
 
       </div>
     </section>

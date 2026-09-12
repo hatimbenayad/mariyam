@@ -1,10 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import SplashScreen from './components/SplashScreen';
 import HeroSection from './components/HeroSection';
 import PanelTransition from './components/PanelTransition';
 import AnatomyWrapper from './components/AnatomyWrapper';
 import InlineHeadingSection from './components/InlineHeadingSection';
-import MilestoneStack from './components/MilestoneStack';
 import ProductsShowcase from './components/ProductsShowcase';
 import StatementSection from './components/StatementSection';
 import FooterSection from './components/FooterSection';
@@ -17,11 +16,32 @@ export default function App() {
   /* Smooth scroll — Lenis, initialised once at root */
   const lenisRef = useLenis();
 
+  /* ── Lock scroll while splash is active ──
+     Pauses Lenis + sets overflow:hidden on <html> so wheel/touch events
+     during the intro don't shift the underlying page position. */
+  useEffect(() => {
+    if (!splashDone) {
+      document.documentElement.style.overflow = 'hidden';
+      if (lenisRef.current) lenisRef.current.stop();
+    }
+  }, [splashDone, lenisRef]);
+
+  /* Called by AnimatePresence onExitComplete after the splash fades out */
+  const handleEnter = useCallback(() => {
+    window.scrollTo(0, 0);                          // native snap to top
+    document.documentElement.style.overflow = '';   // restore native scroll
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { immediate: true }); // Lenis snap to top
+      lenisRef.current.start();                          // resume smooth scroll
+    }
+    setSplashDone(true);
+  }, [lenisRef]);
+
   return (
     <>
-      {/* ── Splash gate ─────────────────────────────────── */}
+      {/* ── Splash gate ──────────────────────────────────── */}
       {!splashDone && (
-        <SplashScreen onEnter={() => setSplashDone(true)} />
+        <SplashScreen onEnter={handleEnter} />
       )}
 
       {/* ── Hero — first section (plays on splash exit) ── */}
@@ -54,14 +74,6 @@ export default function App() {
         thumb1="/inline heading section 1.png"
         thumb2="/inline heading section 2.png"
         thumb3="/inline heading section 3.png"
-      />
-
-      {/* ── Milestone Card Stack ── */}
-      <MilestoneStack
-        card1PhotoSrc="/chocchip pudding.png"
-        card1PhotoAlt="Global recognition era — chocchip pudding"
-        card2PhotoSrc="/chocolate pudding.png"
-        card2PhotoAlt="A new chapter — chocolate pudding"
       />
 
       {/* ── Products Showcase Section ── */}

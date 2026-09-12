@@ -64,45 +64,50 @@
   min-height: 60vh; /* Ensure some vertical space for layout */
 }
 
+/* ── Headline Container ── */
+.ts__headlines-container {
+  display: grid;
+  grid-template-areas: "overlap";
+  max-width: 900px;          /* wider block */
+  margin-top: 0;             /* flush to top of ts__content */
+  margin-left: auto;
+  margin-right: 2rem;        /* tighter to the right edge */
+  align-self: flex-start;    /* pin to top of the flex column */
+  position: relative;
+  z-index: 2;
+}
+
 /* ── Headline ── */
 .ts__headline {
-  max-width: 800px;
+  grid-area: overlap;
+  width: 100%;
   font-family: Impact, 'Arial Narrow', sans-serif;
-  font-size: clamp(3rem, 6vw, 6rem);
-  line-height: 1.1;
+  font-size: clamp(4rem, 7.5vw, 8rem);  /* noticeably bigger */
+  line-height: 1.0;
   color: #4A2C17;
   text-transform: uppercase;
-  margin-top: 2rem;
-  margin-left: auto;
-  margin-right: 4rem;
   text-align: right;
-  position: relative;
 }
 
-/* Hidden placeholder to reserve space */
-.ts__headline-placeholder {
-  visibility: hidden;
+.ts__headline--solid {
+  clip-path: var(--clip-exclude, none);
 }
 
-/* Overlay that actually animates in */
-.ts__headline-animated {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0;
-  white-space: pre-wrap; /* Preserve spaces as elements if needed */
+.ts__headline--outline {
+  clip-path: var(--clip-include, none);
+  color: transparent;
+  -webkit-text-stroke: 2px #4A2C17;
+  pointer-events: none;
 }
 
 /* ── Product Photo Sticker ── */
 .ts__product-wrapper {
   position: absolute;
-  bottom: 0;
-  left: 10%;
-  width: clamp(200px, 30vw, 400px);
+  bottom: -4%;           /* pushed further below center */
+  left: -2%;             /* pushed further to the left */
+  width: clamp(340px, 48vw, 620px);  /* noticeably larger */
   aspect-ratio: 1;
-  transform: rotate(-5deg); /* Slight rotation */
+  transform: rotate(-5deg);
 }
 
 .ts__photo-sticker {
@@ -127,38 +132,7 @@
   filter: drop-shadow(0 12px 32px rgba(74, 44, 23, 0.22)) drop-shadow(0 3px 8px rgba(74, 44, 23, 0.14));
 }
 
-/* ── Knockout layer ────────────────────────────────────────────
-   Absolutely fills the photo container. The headline inside it
-   is positioned to perfectly align with the real headline above,
-   but clipped by overflow:hidden on .ts__photo-sticker.
-   Result: outlined letters are visible ONLY inside the image zone.
-─────────────────────────────────────────────────────────────── */
-.ts__knockout-layer {
-  position: absolute;
-  /* Mirror the content area geometry: the section is right-aligned
-     with margin-right:4rem, so we push from the right to realign */
-  inset: 0;
-  pointer-events: none;
-  /* Shift the headline inside here to align with the real headline.
-     The product wrapper is at left:10%, so we offset right to simulate
-     the headline's right-aligned position */
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-end;
-  /* Padding mirrors .ts__headline margin offsets */
-  padding-right: 4rem;
-  padding-top: 2rem;
-}
-
-.ts__headline--knockout {
-  /* Stroke-only text — hollow letters with brown border */
-  color: transparent;
-  -webkit-text-stroke: 2px #4A2C17;
-  /* Must match the real headline exactly */
-  margin: 0;
-  margin-top: 2rem;
-  text-align: right;
-}
+/* Removed old knockout layer */
 
 .ts__photo-placeholder {
   font-size: 5rem;

@@ -19,6 +19,9 @@ export function useLenis() {
 
     lenisRef.current = lenis;
 
+    // Start paused — App.jsx calls lenis.start() after the splash exits
+    lenis.stop();
+
     let rafId;
     function raf(time) {
       lenis.raf(time);
