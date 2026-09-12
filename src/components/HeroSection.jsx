@@ -266,11 +266,11 @@ export default function HeroSection({
 
         {/* Top-Right Label -> "Pure indulgence" */}
         <motion.div className="hero__label-block hero__label-block--upper-right" variants={labelV(STAGGER_BASE + 1 * STAGGER_STEP + 0.3)} initial="hidden" animate={animState}>
-          <svg className="hero__arrow hero__arrow--upper-right" viewBox="0 0 100 50">
-            <motion.path d="M 90 40 Q 50 -10 10 20" className="hero__stroke hero__stroke--arrow" variants={doodleV(STAGGER_BASE + 1 * STAGGER_STEP + 0.4)} />
-            <motion.path d="M 20 10 L 10 20 L 25 25" className="hero__stroke hero__stroke--arrow-head" variants={doodleV(STAGGER_BASE + 1 * STAGGER_STEP + 0.4)} />
-          </svg>
           <span className="hero__label-text">{labels[2]}</span>
+          <svg className="hero__arrow hero__arrow--upper-right" viewBox="0 0 100 50">
+            <motion.path d="M 90 10 Q 50 60 10 30" className="hero__stroke hero__stroke--arrow" variants={doodleV(STAGGER_BASE + 1 * STAGGER_STEP + 0.4)} />
+            <motion.path d="M 20 40 L 10 30 L 25 25" className="hero__stroke hero__stroke--arrow-head" variants={doodleV(STAGGER_BASE + 1 * STAGGER_STEP + 0.4)} />
+          </svg>
         </motion.div>
 
         {/* Mid-Left Label -> "Small batches" */}
@@ -307,10 +307,16 @@ export default function HeroSection({
         {/* ── Center text block ────────────────────────── */}
         <div className="hero__center" aria-label="Puddi'n — by NUGGETSINMYBAG">
           
-          {/* Crown doodle */}
-          <svg className="hero__doodle-crown" viewBox="0 0 100 50">
-            <motion.path d="M 10 40 L 20 10 L 50 30 L 80 10 L 90 40 Z" className="hero__stroke hero__stroke--crown" variants={doodleV(0.6)} initial="hidden" animate={animState} />
-          </svg>
+          {/* Crown image */}
+          <motion.img
+            src="/crown.png"
+            alt="Crown"
+            className="hero__doodle-crown"
+            variants={textV(0.6)}
+            initial="hidden"
+            animate={animState}
+            draggable={false}
+          />
 
           {/* Line 1: Logo */}
           <motion.h1

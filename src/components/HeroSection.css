@@ -282,11 +282,11 @@
   transform: translate(0px, -5px) scaleX(-1) rotate(-10deg);
 }
 .hero__label-block--upper-right {
-  top: -1%; left: 45%;
+  top: 15%; left: 82%;
   align-items: flex-start;
 }
 .hero__label-block--upper-right .hero__arrow {
-  transform: translate(-10px, 10px) rotate(15deg);
+  transform: translate(-30px, -5px) rotate(-15deg);
 }
 .hero__label-block--mid-left {
   top: 38%; left: 16%;
@@ -310,15 +310,17 @@
   z-index: 10; pointer-events: none;
   overflow: visible;
 }
-.hero__doodle--sparkle-1 { top: 12%; left: 52%; transform: rotate(15deg) scale(0.6); }
+.hero__doodle--sparkle-1 { top: -2%; left: 74%; transform: rotate(15deg) scale(0.6); }
 .hero__doodle--heart-1 { bottom: 12%; left: 34%; transform: rotate(-20deg) scale(0.7); }
 .hero__doodle--heart-2 { bottom: 22%; left: 52%; transform: rotate(15deg) scale(0.5); }
 
 .hero__doodle-crown {
-  width: 80px; height: 40px;
-  margin-bottom: -15px;
+  width: clamp(70px, 8vw, 110px);
+  height: auto;
+  margin-bottom: 0px;
   margin-left: 20px;
-  overflow: visible;
+  z-index: 10;
+  display: block;
 }
 .hero__doodle-squiggle {
   width: 150px; height: 20px;

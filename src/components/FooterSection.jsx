@@ -8,7 +8,7 @@ export default function FooterSection({
   headingLine2 = "NUGGETSINMYBAG", 
   tagCaption = "Let's dig in",
   photos = [null, null], 
-  creditLine = "©2026. Created by Antigravity Studio"
+  creditLine = "©2026. Created by overcodey"
 }) {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-30% 0px" });
