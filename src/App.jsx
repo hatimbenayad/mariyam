@@ -62,8 +62,8 @@ export default function App() {
         heading="The Beginning"
         description="From a small kitchen in the heart of the city, Puddi'n was born out of a simple obsession: making the perfect pudding. Every batch is handcrafted fresh each morning, poured with care, and served with the kind of love that lingers long after the last spoonful."
         year="2024"
-        photoSrc="/banana pudding.png"
-        photoAlt="A fresh batch of banana pudding"
+        photoSrc="/creampour.png"
+        photoAlt="A fresh batch of creampour"
       />
 
       {/* ── Typewriter & Anatomy Sections (Shared Scroll Wrapper) ── */}
