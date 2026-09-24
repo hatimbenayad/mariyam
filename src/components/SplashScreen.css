@@ -46,9 +46,17 @@
   /* Place each stripe in its respective odd column */
 }
 
-.splash__stripe:nth-child(1) { grid-column: 2; }
-.splash__stripe:nth-child(2) { grid-column: 4; }
-.splash__stripe:nth-child(3) { grid-column: 6; }
+.splash__stripe:nth-child(1) {
+  grid-column: 2;
+}
+
+.splash__stripe:nth-child(2) {
+  grid-column: 4;
+}
+
+.splash__stripe:nth-child(3) {
+  grid-column: 6;
+}
 
 /* ── Shared word style ───────────────────────────────────── */
 .splash__word {

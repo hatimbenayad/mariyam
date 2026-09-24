@@ -3,8 +3,10 @@
 .anatomy-section {
   position: absolute;
   inset: 0;
-  z-index: 20; /* Overlays TypewriterSection */
-  background-color: #F6E27E; /* Pastel yellow */
+  z-index: 20;
+  /* Overlays TypewriterSection */
+  background-color: #F6E27E;
+  /* Pastel yellow */
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -15,13 +17,16 @@
 /* ── Background Watermark ── */
 .as__watermark-container {
   position: absolute;
-  inset: -50%; /* Make it much larger to allow rotation without clipping corners */
+  inset: -50%;
+  /* Make it much larger to allow rotation without clipping corners */
   display: flex;
   flex-direction: column;
   justify-content: center;
-  transform: rotate(-15deg); /* Tilted to match diagonal band loosely */
+  transform: rotate(-15deg);
+  /* Tilted to match diagonal band loosely */
   pointer-events: none;
-  opacity: 0.15; /* Subtle texture */
+  opacity: 0.15;
+  /* Subtle texture */
   z-index: 1;
 }
 
@@ -29,15 +34,20 @@
   font-family: Impact, 'Arial Narrow', sans-serif;
   font-size: clamp(8.5rem, 13vw, 16.5rem);
   line-height: 0.9;
-  color: #E3CC66; /* Darker/muted pastel yellow */
+  color: #E3CC66;
+  /* Darker/muted pastel yellow */
   white-space: nowrap;
   user-select: none;
-  pointer-events: auto; /* Allow hover */
+  pointer-events: auto;
+  /* Allow hover */
   transition: color 0.3s ease;
 }
+
 .as__watermark-row:hover {
-  color: #4A2C17; /* Dark brown */
+  color: #4A2C17;
+  /* Dark brown */
 }
+
 /* Alternate rows offset for texture */
 .as__watermark-row:nth-child(even) {
   margin-left: -50%;
@@ -50,7 +60,8 @@
   right: 2rem;
   font-weight: 700;
   text-transform: uppercase;
-  color: #4A2C17; /* Contrast on yellow */
+  color: #4A2C17;
+  /* Contrast on yellow */
   font-size: 0.9rem;
   letter-spacing: 0.05em;
   z-index: 30;
@@ -70,7 +81,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  pointer-events: none; /* Let hover pass through to watermark */
+  pointer-events: none;
+  /* Let hover pass through to watermark */
 }
 
 .as__heading {
@@ -81,7 +93,8 @@
   text-transform: uppercase;
   color: #4A2C17;
   margin-top: 2rem;
-  pointer-events: none; /* Let hover pass through */
+  pointer-events: none;
+  /* Let hover pass through */
 }
 
 .as__brand {
@@ -89,9 +102,11 @@
   font-weight: 900;
   font-size: clamp(2.8rem, 5.5vw, 4.2rem);
   letter-spacing: 0.1em;
-  color: rgba(74, 44, 23, 0.15); /* light brown for subtle watermark */
+  color: rgba(74, 44, 23, 0.15);
+  /* light brown for subtle watermark */
   margin-bottom: 2rem;
-  pointer-events: none; /* Let hover pass through */
+  pointer-events: none;
+  /* Let hover pass through */
 }
 
 .as__main-layout {
@@ -101,7 +116,8 @@
   gap: clamp(3rem, 7vw, 8rem);
   width: 100%;
   flex: 1;
-  pointer-events: none; /* Let hover pass through */
+  pointer-events: none;
+  /* Let hover pass through */
 }
 
 /* ── Lists ── */
@@ -128,7 +144,8 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  pointer-events: auto; /* Restore interactivity for list items */
+  pointer-events: auto;
+  /* Restore interactivity for list items */
 }
 
 .as__list-item {
@@ -160,8 +177,13 @@
 }
 
 @keyframes rotate-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .as__photo-container {
@@ -176,7 +198,8 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  pointer-events: auto; /* Restore interactivity for the photo */
+  pointer-events: auto;
+  /* Restore interactivity for the photo */
 }
 
 .as__photo {
@@ -192,13 +215,183 @@
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-  .as__main-layout {
+  .anatomy-section {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 100svh !important;
+    overflow: visible !important;
+    overflow-x: hidden !important;
+    clip-path: none !important;
+    display: flex;
     flex-direction: column;
-    gap: 2rem;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 !important;
   }
-  .as__col:first-child,
-  .as__col:last-child {
+
+  /* Ensure all content is statically visible without animation clipping */
+  .as__heading,
+  .as__list-item,
+  .as__center-hero,
+  .as__brand {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Background watermark text as faint decoration only */
+  .as__watermark-container {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.06;
+    z-index: 0;
+    transform: rotate(-8deg);
+  }
+
+  .as__watermark-row {
+    font-size: clamp(3.5rem, 12vw, 6rem);
+    line-height: 1.1;
+    pointer-events: none;
+    user-select: none;
+    color: #4A2C17;
+  }
+
+  /* Content wrapper grows naturally with content with generous bottom padding */
+  .as__content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 100%;
+    height: auto !important;
+    min-height: auto;
+    padding: clamp(2.5rem, 5vh, 3.5rem) 1.25rem clamp(5rem, 12vh, 7.5rem) 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    pointer-events: auto;
+    box-sizing: border-box;
+  }
+
+  /* Anatomy Heading with generous spacing before first filling */
+  .as__heading {
+    font-size: clamp(1.35rem, 5vw, 1.75rem);
+    letter-spacing: 0.25em;
+    margin-top: 0;
+    margin-bottom: clamp(1.75rem, 4vh, 2.5rem);
+    text-align: center;
+    color: #4A2C17;
+    pointer-events: auto;
+  }
+
+  /* Vertical Stack Order: Anatomy -> Fillings -> Image -> Toppings */
+  .as__main-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 0;
+    flex: none;
+    pointer-events: auto;
+  }
+
+  .as__col {
+    width: 100%;
+    flex: none;
+    display: flex;
     justify-content: center;
     text-align: center;
+  }
+
+  .as__col:first-child {
+    order: 1; /* Fillings list */
+    justify-content: center;
+    text-align: center;
+  }
+
+  .as__col:last-child {
+    order: 3; /* Toppings list */
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* Centered, readable, evenly spaced list items */
+  .as__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(0.75rem, 1.8vh, 1.1rem);
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    list-style: none;
+  }
+
+  .as__list-item {
+    font-size: clamp(1rem, 3.8vw, 1.25rem);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-align: center;
+    color: #4A2C17;
+    line-height: 1.3;
+  }
+
+  /* Centered circular image maintaining 1:1 aspect ratio at sensible 45-60vw size */
+  .as__center-hero {
+    order: 2;
+    position: relative;
+    width: clamp(180px, 52vw, 240px);
+    max-width: 240px;
+    aspect-ratio: 1 / 1;
+    margin: clamp(2rem, 4.5vh, 2.75rem) auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .as__starburst {
+    position: absolute;
+    inset: -14%;
+    width: 128%;
+    height: 128%;
+    z-index: 1;
+  }
+
+  .as__photo-container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    box-shadow: 0 12px 28px rgba(74, 44, 23, 0.18);
+  }
+
+  .as__photo {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Subtle brand text at bottom with proper visibility */
+  .as__brand {
+    font-size: clamp(2.2rem, 8vw, 3.2rem);
+    letter-spacing: 0.08em;
+    margin-top: clamp(2.25rem, 4.5vh, 3.25rem);
+    margin-bottom: 0;
+    text-align: center;
+    color: rgba(74, 44, 23, 0.22);
+    pointer-events: none;
+    opacity: 1 !important;
   }
 }

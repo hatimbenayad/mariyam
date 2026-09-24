@@ -225,3 +225,37 @@
     margin: 0.5rem 0;
   }
 }
+
+@media (max-width: 768px) {
+  .products-showcase {
+    position: relative;
+    background-color: #FDF3D5;
+    overflow: hidden;
+  }
+
+  /* Disable distorted/stretched WebGL canvas on mobile */
+  .products-showcase canvas {
+    display: none !important;
+  }
+
+  /* Clean, crisp repeating brand pattern */
+  .products-showcase::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/pumera.png');
+    background-repeat: repeat;
+    background-size: clamp(180px, 50vw, 240px) auto;
+    background-position: center top;
+    opacity: 0.2;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .ps__container {
+    position: relative;
+    z-index: 2;
+  }
+}

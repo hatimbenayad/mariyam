@@ -19,9 +19,12 @@
 */
 .pt {
   position: relative;
-  z-index: 2;            /* sits above the sticky hero (z-index: 1) */
-  margin-top: -100vh;   /* pulls the section back up so it starts AT the hero */
-  height: 250vh;         /* 150vh scroll travel for the animation */
+  z-index: 2;
+  /* sits above the sticky hero (z-index: 1) */
+  margin-top: -100vh;
+  /* pulls the section back up so it starts AT the hero */
+  height: 250vh;
+  /* 150vh scroll travel for the animation */
 }
 
 /* ── Sticky viewport frame ───────────────────────────────── */
@@ -35,7 +38,8 @@
   height: 100vh;
   width: 100%;
   overflow: hidden;
-  background: transparent; /* hero shows through the unstretched area around the tiny panel */
+  background: transparent;
+  /* hero shows through the unstretched area around the tiny panel */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,15 +57,18 @@
   position: absolute;
   inset: 0;
   display: flex;
-  will-change: clip-path;   /* GPU hint for clip-path animation */
-  overflow: hidden;         /* contains the bleeding year number */
+  will-change: clip-path;
+  /* GPU hint for clip-path animation */
+  overflow: hidden;
+  /* contains the bleeding year number */
 }
 
 /* ── Left half — caramel / brand story ───────────────────── */
 .pt__left {
   width: 50%;
   height: 100%;
-  background: #F6E27E; /* pastel yellow matching splash screen */
+  background: #F6E27E;
+  /* pastel yellow matching splash screen */
   position: relative;
   display: flex;
   flex-direction: column;
@@ -97,7 +104,8 @@
   font-weight: 500;
   font-size: clamp(1rem, 1.6vw, 1.5rem);
   line-height: 1.72;
-  color: rgba(74, 44, 23, 0.88); /* dark brown with opacity */
+  color: rgba(74, 44, 23, 0.88);
+  /* dark brown with opacity */
   margin: 0;
 }
 
@@ -109,7 +117,8 @@
   font-size: clamp(9rem, 26vw, 24rem);
   line-height: 0.82;
   color: #4A2C17;
-  opacity: 0.08; /* lower opacity since dark text stands out more */
+  opacity: 0.08;
+  /* lower opacity since dark text stands out more */
   letter-spacing: -0.05em;
   position: absolute;
   bottom: -0.12em;
@@ -124,7 +133,8 @@
 .pt__right {
   width: 50%;
   height: 100%;
-  background: #c8b89a;  /* slightly deeper tan to read as photo placeholder */
+  background: #c8b89a;
+  /* slightly deeper tan to read as photo placeholder */
   position: relative;
   overflow: hidden;
   display: flex;
@@ -146,13 +156,11 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(
-    -45deg,
-    transparent,
-    transparent 20px,
-    rgba(253, 243, 213, 0.04) 20px,
-    rgba(253, 243, 213, 0.04) 40px
-  );
+  background: repeating-linear-gradient(-45deg,
+      transparent,
+      transparent 20px,
+      rgba(253, 243, 213, 0.04) 20px,
+      rgba(253, 243, 213, 0.04) 40px);
   pointer-events: none;
 }
 
@@ -207,18 +215,22 @@
 
 /* ── Responsive ──────────────────────────────────────────── */
 @media (max-width: 768px) {
+
   /* Stack halves vertically on small screens */
   .pt__panel {
     flex-direction: column;
   }
+
   .pt__left,
   .pt__right {
     width: 100%;
     height: 50%;
   }
+
   .pt__year {
     font-size: clamp(6rem, 28vw, 10rem);
   }
+
   .pt__left-content {
     padding: 2rem;
     padding-top: 2.5rem;

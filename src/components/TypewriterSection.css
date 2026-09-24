@@ -4,7 +4,8 @@
   min-height: 100vh;
   background-color: #FDF3D5;
   position: relative;
-  z-index: 10; /* Ensures it renders above the sticky HeroSection */
+  z-index: 10;
+  /* Ensures it renders above the sticky HeroSection */
   display: flex;
   align-items: center;
   padding: 4rem 2rem;
@@ -36,18 +37,23 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 60vh; /* Ensure some vertical space for layout */
+  min-height: 60vh;
+  /* Ensure some vertical space for layout */
 }
 
 /* ── Headline Container ── */
 .ts__headlines-container {
   display: grid;
   grid-template-areas: "overlap";
-  max-width: 900px;          /* wider block */
-  margin-top: 0;             /* flush to top of ts__content */
+  max-width: 900px;
+  /* wider block */
+  margin-top: 0;
+  /* flush to top of ts__content */
   margin-left: auto;
-  margin-right: 2rem;        /* tighter to the right edge */
-  align-self: flex-start;    /* pin to top of the flex column */
+  margin-right: 2rem;
+  /* tighter to the right edge */
+  align-self: flex-start;
+  /* pin to top of the flex column */
   position: relative;
   z-index: 2;
 }
@@ -57,7 +63,8 @@
   grid-area: overlap;
   width: 100%;
   font-family: Impact, 'Arial Narrow', sans-serif;
-  font-size: clamp(4rem, 7.5vw, 8rem);  /* noticeably bigger */
+  font-size: clamp(4rem, 7.5vw, 8rem);
+  /* noticeably bigger */
   line-height: 1.0;
   color: #4A2C17;
   text-transform: uppercase;
@@ -78,9 +85,12 @@
 /* ── Product Photo Sticker ── */
 .ts__product-wrapper {
   position: absolute;
-  bottom: -4%;           /* pushed further below center */
-  left: -2%;             /* pushed further to the left */
-  width: clamp(340px, 48vw, 620px);  /* noticeably larger */
+  bottom: -4%;
+  /* pushed further below center */
+  left: -2%;
+  /* pushed further to the left */
+  width: clamp(340px, 48vw, 620px);
+  /* noticeably larger */
   aspect-ratio: 1;
   transform: rotate(-5deg);
 }
@@ -93,7 +103,8 @@
   border: none;
   border-radius: 0;
   box-shadow: none;
-  overflow: hidden;   /* clips the knockout text layer to image bounds */
+  overflow: hidden;
+  /* clips the knockout text layer to image bounds */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -133,7 +144,8 @@
 }
 
 .ts__accent-path {
-  stroke: #C0392B; /* Warm dessert red */
+  stroke: #C0392B;
+  /* Warm dessert red */
   stroke-width: 6;
   stroke-linecap: round;
   fill: none;

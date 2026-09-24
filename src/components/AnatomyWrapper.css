@@ -13,3 +13,18 @@
   width: 100%;
   overflow: hidden;
 }
+
+@media (max-width: 768px) {
+  .anatomy-wrapper {
+    height: auto;
+  }
+
+  .aw__sticky {
+    position: static;
+    height: auto;
+    width: 100%;
+    overflow: visible;
+    overflow-x: hidden;
+  }
+}
+
